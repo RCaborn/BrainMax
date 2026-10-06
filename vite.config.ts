@@ -4,12 +4,14 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // Browser storage is tied to origin (host + port), so the ports are fixed:
 // changing them would make the app look like it lost your progress.
+// GitHub Pages serves the app from /BrainMax/; local builds stay at the root.
 export default defineConfig({
+  base: process.env.BASE_PATH || '/',
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon.svg'],
+      includeAssets: ['icon.svg', 'apple-touch-icon.png'],
       manifest: {
         name: 'BrainMax',
         short_name: 'BrainMax',
@@ -17,9 +19,14 @@ export default defineConfig({
         theme_color: '#0f1115',
         background_color: '#0f1115',
         display: 'standalone',
-        icons: [{ src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' }],
+        icons: [
+          { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'icon-512.png', sizes: '512x512', type: 'image/png' },
+          { src: 'icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: 'icon.svg', sizes: 'any', type: 'image/svg+xml' },
+        ],
       },
-      workbox: { globPatterns: ['**/*.{js,css,html,svg,json}'], maximumFileSizeToCacheInBytes: 5_000_000 },
+      workbox: { globPatterns: ['**/*.{js,css,html,svg,json,png}'], maximumFileSizeToCacheInBytes: 5_000_000 },
     }),
   ],
   build: { chunkSizeWarningLimit: 800 },

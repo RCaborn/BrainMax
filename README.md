@@ -6,9 +6,16 @@ A personal daily training app with three tasks a day and a progress dashboard:
 2. **Spanish:** 20 typed answers a day from the 2000 most common words, scheduled with spaced repetition.
 3. **Daily puzzle:** a different puzzle for each day of the week.
 
-It runs locally in your browser, works offline, and can be installed as a desktop app.
+## Use it
 
-## Run it
+**Open https://rcaborn.github.io/BrainMax/**. That's it: no install, no terminal.
+
+- **Desktop app:** in Chrome or Edge, click the install icon at the right of the address bar.
+- **Phone:** on iPhone, Share → Add to Home Screen; on Android, ⋮ → Install app.
+- **Offline:** after the first visit it works without a connection.
+- **Updates:** every push to `main` redeploys automatically (`.github/workflows/deploy.yml`).
+
+## Run it locally instead
 
 You need Node.js 20 or newer.
 
@@ -18,13 +25,11 @@ npm run build
 npm run preview      # → http://localhost:5199
 ```
 
-To install it as an app, open `http://localhost:5199` in Chrome or Edge and click the install icon in the address bar.
-It then opens in its own window and works offline.
-
 `npm run dev` runs the dev server (same port) with hot reload and shows the developer time-travel controls in Settings.
 
-**Your data:** progress is stored in the browser's IndexedDB for `localhost:5199`. A different port or browser starts
-empty, so the port is fixed. Use **Settings → Download backup** now and then; restore from the same page.
+**Your data:** progress is stored in your browser's IndexedDB for whichever address you use. The hosted link,
+`localhost:5199`, a different browser, and your phone each keep separate progress. Use **Settings → Download backup**
+now and then; restore from the same page (this is also how you move progress between devices).
 
 ## How it works
 
