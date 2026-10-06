@@ -1,0 +1,589 @@
+cuyo|whose|pron
+cual|which|pron
+cuanto|as much as|adv
+nuestro|our|det
+vuestro|your|det
+suyo|his;hers;theirs;yours|pron
+mío|mine|pron
+tuyo|yours|pron
+nosotras|we;us|pron
+ellas|they;them|pron
+algún|some;any|det
+varios|several;various|det
+demás|others;rest|pron
+cualquiera|anyone;whichever;any|pron
+sobre todo|above all;especially|adv
+ojalá|hopefully;I hope|int
+incluir|to include|v
+añadir|to add|v
+aumentar|to increase|v
+reducir|to reduce|v
+producir|to produce|v
+desarrollar|to develop|v
+considerar|to consider|v
+presentar|to present;to introduce|v
+ofrecer|to offer|v
+representar|to represent|v
+establecer|to establish|v
+indicar|to indicate|v
+señalar|to point out;to signal|v
+formar|to form|v
+realizar|to carry out;to accomplish|v
+obtener|to obtain;to get|v
+contener|to contain|v
+mantenerse|to stay;to remain|v
+permitirse|to afford|v
+reconocer|to recognize;to recognise;to admit|v
+aparecer|to appear|v
+significar|to mean|v
+existir|to exist|v
+ocupar|to occupy|v
+crecer|to grow|v
+generar|to generate|v
+afectar|to affect|v
+analizar|to analyze;to analyse|v
+apoyar|to support|v
+aplicar|to apply|v
+participar|to participate;to take part|v
+definir|to define|v
+describir|to describe|v
+determinar|to determine|v
+dirigir|to direct;to lead|v
+elegir|to choose;to elect|v
+evitar|to avoid|v
+exigir|to demand;to require|v
+expresar|to express|v
+faltar|to be missing;to lack|v
+fijar|to fix;to set|v
+ganar|to win;to earn|v
+imponer|to impose|v
+lanzar|to throw;to launch|v
+mostrar|to show|v
+notar|to notice|v
+observar|to observe|v
+organizar|to organize;to organise|v
+pertenecer|to belong|v
+plantear|to raise;to pose|v
+proponer|to propose|v
+recorrer|to travel through;to go round|v
+reflejar|to reflect|v
+sostener|to hold;to support|v
+sugerir|to suggest|v
+superar|to overcome;to exceed|v
+surgir|to arise;to emerge|v
+tender|to tend;to hang out|v
+transformar|to transform|v
+unir|to unite;to join|v
+vigilar|to watch;to guard|v
+volverse|to become;to turn around|v
+convertirse|to become|v
+acercar|to bring closer|v
+alejar|to move away|v
+acompañar|to accompany|v
+acostar|to put to bed;to lie down|v
+afeitar|to shave|v
+apagar|to turn off;to put out|v
+encender|to turn on;to light|v
+aprovechar|to take advantage of|v
+arrancar|to start;to pull out|v
+asistir|to attend|v
+atreverse|to dare|v
+avanzar|to advance;to move forward|v
+bañar|to bathe|v
+besar|to kiss|v
+calentar|to heat;to warm up|v
+cansar|to tire|v
+cargar|to load;to charge;to carry|v
+casar|to marry|v
+cocer|to cook;to boil|v
+colgar|to hang;to hang up|v
+colocar|to place;to put|v
+comparar|to compare|v
+compartir|to share|v
+comprobar|to check;to verify|v
+comunicar|to communicate|v
+contestar|to answer|v
+corregir|to correct|v
+cubrir|to cover|v
+dañar|to damage;to harm|v
+defender|to defend|v
+dibujar|to draw|v
+dirigirse|to head for;to address|v
+disculpar|to excuse;to forgive|v
+diseñar|to design|v
+divertirse|to have fun|v
+doblar|to fold;to turn;to dub|v
+ducharse|to shower|v
+durar|to last|v
+elevar|to raise|v
+empujar|to push|v
+enamorarse|to fall in love|v
+enfadarse|to get angry|v
+engañar|to deceive;to cheat|v
+enojarse|to get angry|v
+entregar|to deliver;to hand in|v
+envolver|to wrap|v
+equivocarse|to be wrong;to make a mistake|v
+escoger|to choose|v
+esconder|to hide|v
+estudiar|to study|v
+explotar|to explode;to exploit|v
+fallar|to fail|v
+felicitar|to congratulate|v
+fluir|to flow|v
+gastar|to spend;to waste|v
+girar|to turn;to rotate|v
+gobernar|to govern|v
+guiar|to guide|v
+hervir|to boil|v
+huir|to flee|v
+imprimir|to print|v
+informar|to inform;to report|v
+insistir|to insist|v
+invitar|to invite|v
+ir de compras|to go shopping|v
+juntar|to gather;to put together|v
+lavar|to wash|v
+levantarse|to get up|v
+limpiar|to clean|v
+llenar|to fill|v
+llover|to rain|v
+medir|to measure|v
+mojar|to wet|v
+molestar|to bother|v
+mudarse|to move house|v
+negar|to deny;to refuse|v
+nevar|to snow|v
+obedecer|to obey|v
+odiar|to hate|v
+oler|to smell|v
+olvidar|to forget|v
+pegar|to hit;to stick|v
+pelar|to peel|v
+perdonar|to forgive|v
+pintar|to paint|v
+planear|to plan|v
+practicar|to practise;to practice|v
+preocuparse|to worry|v
+prestar|to lend|v
+pretender|to try;to intend|v
+quejarse|to complain|v
+quemar|to burn|v
+rechazar|to reject|v
+regalar|to give as a gift|v
+reparar|to repair|v
+repetir|to repeat|v
+rezar|to pray|v
+rodear|to surround|v
+saludar|to greet;to say hello|v
+secar|to dry|v
+sonreír|to smile|v
+soñar|to dream|v
+subrayar|to underline|v
+suspender|to suspend;to fail|v
+tardar|to take time;to be late|v
+temblar|to tremble;to shake|v
+tirar|to throw|v
+toser|to cough|v
+trasladar|to move;to transfer|v
+vestir|to dress;to wear|v
+vestirse|to get dressed|v
+viajar|to travel|v
+visitar|to visit|v
+votar|to vote|v
+cumplir|to fulfil;to fulfill|v
+enero|January|nm
+febrero|February|nm
+marzo|March|nm
+abril|April|nm
+junio|June|nm
+julio|July|nm
+agosto|August|nm
+septiembre|September|nm
+octubre|October|nm
+noviembre|November|nm
+diciembre|December|nm
+otoño|autumn;fall|nm
+once|eleven|num
+trece|thirteen|num
+catorce|fourteen|num
+dieciséis|sixteen|num
+cuarenta|forty|num
+sesenta|sixty|num
+setenta|seventy|num
+ochenta|eighty|num
+noventa|ninety|num
+quinientos|five hundred|num
+amarillo|yellow|adj
+naranja|orange|nf
+gris|grey;gray|adj
+marrón|brown|adj
+morado|purple|adj
+rubio|blond;blonde|adj
+moreno|dark-haired;dark-skinned;tanned|adj
+delgado|thin;slim|adj
+alto|tall|adj
+ancho|wide|adj
+estrecho|narrow|adj
+pesado|heavy|adj
+ligero|light|adj
+blando|soft|adj
+seco|dry|adj
+mojado|wet|adj
+caliente|hot|adj
+tibio|lukewarm|adj
+dulce|sweet|adj
+amargo|bitter|adj
+salado|salty|adj
+picante|spicy|adj
+sabroso|tasty|adj
+lleno|full|adj
+vacío|empty|adj
+fácil|easy|adj
+rápido|fast|adj
+lento|slow|adj
+temprano|early|adv
+pronto|soon|adv
+tarde|late|adv
+cansado|tired|adj
+contento|happy;pleased|adj
+enfadado|angry|adj
+preocupado|worried|adj
+sorprendido|surprised|adj
+avergonzado|embarrassed;ashamed|adj
+orgulloso|proud|adj
+celoso|jealous|adj
+tímido|shy|adj
+amable|kind|adj
+educado|polite|adj
+grosero|rude|adj
+generoso|generous|adj
+perezoso|lazy|adj
+trabajador|hard-working|adj
+listo|clever;ready|adj
+sabio|wise|adj
+fiel|faithful;loyal|adj
+leal|loyal|adj
+valioso|valuable|adj
+barato|cheap|adj
+gratuito|free|adj
+actual|current|adj
+moderno|modern|adj
+antiguo|ancient;old|adj
+reciente|recent|adj
+anterior|previous|adj
+posterior|later;rear|adj
+principal|main|adj
+básico|basic|adj
+simple|simple|adj
+complejo|complex|adj
+claro|clear;light|adj
+oscuro|dark|adj
+público|public|adj
+privado|private|adj
+local|local|adj
+regional|regional|adj
+económico|economic;cheap|adj
+financiero|financial|adj
+social|social|adj
+cultural|cultural|adj
+histórico|historic;historical|adj
+político|political|adj
+legal|legal|adj
+ilegal|illegal|adj
+médico|medical|adj
+físico|physical|adj
+mental|mental|adj
+emocional|emotional|adj
+personal|personal|adj
+profesional|professional|adj
+técnico|technical|adj
+digital|digital|adj
+eléctrico|electric;electrical|adj
+cuerpo|body|nm
+cara|face|nf
+oreja|ear|nf
+espalda|back|nf
+dedo|finger|nm
+uña|nail|nf
+rodilla|knee|nf
+tobillo|ankle|nm
+codo|elbow|nm
+hígado|liver|nm
+pulmón|lung|nm
+riñón|kidney|nm
+sangre|blood|nf
+salud|health|nf
+gripe|flu|nf
+resfriado|cold|nm
+tos|cough|nf
+herida|wound|nf
+receta|recipe;prescription|nf
+farmacia|pharmacy;chemist|nf
+desayunar|to have breakfast|v
+comida|food|nf
+fruta|fruit|nf
+verdura|vegetable|nf
+tomate|tomato|nm
+patata|potato|nf
+papa|potato|nf
+cebolla|onion|nf
+ajo|garlic|nm
+lechuga|lettuce|nf
+zanahoria|carrot|nf
+plátano|banana|nm
+uva|grape|nf
+fresa|strawberry|nf
+limón|lemon|nm
+mantequilla|butter|nf
+pimienta|pepper|nf
+jamón|ham|nm
+carne de res|beef|nf
+cordero|lamb|nm
+marisco|seafood;shellfish|nm
+postre|dessert|nm
+tenedor|fork|nm
+cuchara|spoon|nf
+servilleta|napkin|nf
+cuenta|bill|nf
+propina|tip|nf
+camarero|waiter|nm
+menú|menu|nm
+horno|oven|nm
+nevera|fridge|nf
+ventana|window|nf
+pared|wall|nf
+suelo|floor|nm
+techo|ceiling|nm
+mueble|piece of furniture|nm
+lámpara|lamp|nf
+alfombra|carpet;rug|nf
+cortina|curtain|nf
+almohada|pillow|nf
+manta|blanket|nf
+toalla|towel|nf
+jabón|soap|nm
+cepillo|brush|nm
+espejo|mirror|nm
+llave|key|nf
+cerradura|lock|nf
+escalera|stairs|nf
+jardín|garden|nm
+vecino|neighbour;neighbor|nm
+camisa|shirt|nf
+camiseta|t-shirt|nf
+falda|skirt|nf
+abrigo|coat|nm
+sombrero|hat|nm
+gorra|cap|nf
+guante|glove|nm
+bufanda|scarf|nf
+calcetín|sock|nm
+cartera|wallet|nf
+paraguas|umbrella|nm
+reloj|watch|nm
+anillo|ring|nm
+tienda|shop|nf
+supermercado|supermarket|nm
+mercado|market|nm
+precio|price|nm
+descuento|discount|nm
+caro|expensive|adj
+tarjeta de crédito|credit card|nf
+cajero|cashier;ATM|nm
+billete|ticket;note|nm
+estación|station|nf
+aeropuerto|airport|nm
+vuelo|flight|nm
+pasaporte|passport|nm
+maleta|suitcase|nf
+hotel|hotel|nm
+habitación|room|nf
+reserva|booking;reservation|nf
+viaje|trip|nm
+turista|tourist|nmf
+mapa|map|nm
+calle|street|nf
+esquina|corner|nf
+semáforo|traffic light|nm
+puente|bridge|nm
+plaza|square|nf
+ayuntamiento|town hall;city council|nm
+correos|post office|nm
+banco|bank|nm
+iglesia|church|nf
+playa|beach|nf
+montaña|mountain|nf
+río|river|nm
+lago|lake|nm
+bosque|forest|nm
+campo|countryside|nm
+desierto|desert|nm
+selva|jungle|nf
+paisaje|landscape|nm
+clima|climate|nm
+tiempo|weather|nm
+temperatura|temperature|nf
+nube|cloud|nf
+niebla|fog|nf
+tormenta|storm|nf
+trueno|thunder|nm
+relámpago|lightning|nm
+estrella|star|nf
+tierra|earth|nf
+animal|animal|nm
+pájaro|bird|nm
+gallina|hen;chicken|nf
+pato|duck|nm
+caballo|horse|nm
+oveja|sheep|nf
+cabra|goat|nf
+ratón|mouse|nm
+mosca|fly|nf
+abeja|bee|nf
+araña|spider|nf
+mariposa|butterfly|nf
+hormiga|ant|nf
+tiburón|shark|nm
+ballena|whale|nf
+elefante|elephant|nm
+tigre|tiger|nm
+mono|monkey|nm
+árbol|tree|nm
+hoja|leaf;sheet|nf
+rama|branch|nf
+raíz|root|nf
+semilla|seed|nf
+escuela|school|nf
+aula|classroom|nf
+alumno|pupil;student|nm
+maestro|teacher;master|nm
+asignatura|subject|nf
+matemáticas|mathematics;maths;math|nf
+idioma|language|nm
+pizarra|blackboard;whiteboard|nf
+cuaderno|notebook|nm
+lápiz|pencil|nm
+bolígrafo|pen|nm
+goma|rubber;eraser|nf
+regla|ruler;rule|nf
+mochila|backpack;rucksack|nf
+nota|grade;mark;note|nf
+aprobar|to pass;to approve|v
+trabajo|job|nm
+oficina|office|nf
+empresa|company|nf
+jefe|boss|nm
+sueldo|salary;wage|nm
+salario|salary;wage|nm
+reunión|meeting|nf
+contrato|contract|nm
+cliente|customer|nmf
+negocio|business|nm
+economía|economy|nf
+mercado|market|nm
+precio|price|nm
+coste|cost|nm
+costo|cost|nm
+beneficio|benefit;profit|nm
+ganancia|profit;earnings|nf
+inversión|investment|nf
+inversor|investor|nm
+acción|share;action|nf
+bolsa|stock exchange;bag|nf
+préstamo|loan|nm
+interés|interest|nm
+deuda|debt|nf
+impuesto|tax|nm
+ingreso|income;revenue|nm
+gasto|expense;spending|nm
+presupuesto|budget|nm
+factura|invoice;bill|nf
+ahorro|saving|nm
+ahorrar|to save|v
+invertir|to invest|v
+vender|to sell|v
+comprar|to buy|v
+pagar|to pay|v
+cobrar|to charge;to collect|v
+deber|to owe|v
+crecimiento|growth|nm
+desarrollo|development|nm
+producción|production|nf
+industria|industry|nf
+tecnología|technology|nf
+internet|internet|nm
+red|network|nf
+correo electrónico|email|nm
+contraseña|password|nf
+pantalla|screen|nf
+teclado|keyboard|nm
+ratón|mouse|nm
+aplicación|application;app|nf
+programa|program|nm
+mensaje|message|nm
+gobierno|government|nm
+estado|state|nm
+ley|law|nf
+derecho|right;law|nm
+justicia|justice|nf
+policía|police|nf
+ejército|army|nm
+guerra|war|nf
+paz|peace|nf
+elección|election|nf
+partido|party|nm
+voto|vote|nm
+presidente|president|nm
+ministro|minister|nm
+rey|king|nm
+reina|queen|nf
+ciudadano|citizen|nm
+derecho humano|human right|nm
+libertad|freedom|nf
+igualdad|equality|nf
+pobreza|poverty|nf
+riqueza|wealth|nf
+salud pública|public health|nf
+medio ambiente|environment|nm
+contaminación|pollution|nf
+cambio climático|climate change|nm
+energía|energy|nf
+recurso|resource|nm
+población|population|nf
+mayoría|majority|nf
+minoría|minority|nf
+sociedad|society|nf
+cultura|culture|nf
+arte|art|nm
+música|music|nf
+literatura|literature|nf
+poesía|poetry|nf
+poema|poem|nm
+novela|novel|nf
+autor|author|nm
+lector|reader|nm
+escritor|writer|nm
+pintor|painter|nm
+cantante|singer|nmf
+canción|song|nf
+baile|dance|nm
+deporte|sport|nm
+equipo|team|nm
+partido|match;game|nm
+gol|goal|nm
+jugador|player|nm
+entrenar|to train|v
+correr|to run|v
+nadar|to swim|v
+caminar|to walk|v
+saltar|to jump|v
+ganar|to win|v
+perder|to lose|v
+empate|draw;tie|nm
+campeonato|championship|nm
+estadio|stadium|nm
+pelota|ball|nf
+tenis|tennis|nm
+baloncesto|basketball|nm
+ciclismo|cycling|nm
