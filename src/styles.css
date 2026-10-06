@@ -13,6 +13,10 @@
   --warn: #f5b942;
   --bad: #ff6b6b;
   --miss: #3a3f4b;
+  --sea: #13202e;
+  --land: #2a2f3a;
+  --land-uk: #343b49;
+  --border-strong: #4a5263;
   --series-1: #3987e5;
   --series-2: #d95926;
   --series-3: #199e70;
@@ -41,6 +45,10 @@
     --warn: #a86b00;
     --bad: #c73434;
     --miss: #a9aaa3;
+    --sea: #dbe8f3;
+    --land: #f4f2ea;
+    --land-uk: #ebe7da;
+    --border-strong: #a8a597;
     --series-1: #2a78d6;
     --series-2: #eb6834;
     --series-3: #1baf7a;
@@ -165,6 +173,9 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
 .heatmap { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 12px); gap: 3px; overflow-x: auto; padding-bottom: 6px; }
 .heatmap div { width: 12px; height: 12px; border-radius: 3px; }
+
+.geo-map { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block; touch-action: manipulation; }
+.flag-img { height: 120px; border: 1px solid var(--border); border-radius: 6px; }
 
 .chart-tip { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-size: 13px; color: var(--text); }
 

@@ -76,6 +76,17 @@ export default function SettingsPage() {
       )}
 
       <div className="card">
+        <h2>Data sources</h2>
+        <ul className="small muted">
+          <li>Country names, capitals and borders: <a href="https://github.com/mledoze/countries">mledoze/countries</a> (ODbL), via the world-countries package.</li>
+          <li>Maps, UK boundaries, cities, rivers and lakes: <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain), via world-atlas (ISC).</li>
+          <li>Flags: <a href="https://github.com/lipis/flag-icons">flag-icons</a> (MIT).</li>
+          <li>Spanish word frequencies: <a href="https://github.com/hermitdave/FrequencyWords">hermitdave/FrequencyWords</a> (OpenSubtitles).</li>
+          <li>Hand-curated geography facts were drafted and independently fact-checked by AI reviewers; anything disputed was dropped.</li>
+        </ul>
+      </div>
+
+      <div className="card">
         <h2>Danger zone</h2>
         <button onClick={() => void reset()} style={{ color: 'var(--bad)' }}>Delete all progress</button>
       </div>

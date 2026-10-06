@@ -5,15 +5,18 @@ import MathPage from './pages/MathPage'
 import SpanishPage from './pages/SpanishPage'
 import PuzzlePage from './pages/PuzzlePage'
 import SettingsPage from './pages/SettingsPage'
-import { saveSnapshot } from './lib/progress'
+import { geoLaunchDay, saveSnapshot } from './lib/progress'
 import { getTimeOffsetDays } from './lib/day'
 
 // Charts are heavy; load them only when the dashboard opens.
 const StatsPage = lazy(() => import('./pages/StatsPage'))
+// Maps, flags and geo data load only when Geography opens.
+const GeoPage = lazy(() => import('./pages/GeoPage'))
 
 export default function App() {
   useEffect(() => {
     void saveSnapshot()
+    void geoLaunchDay()
   }, [])
   const offset = getTimeOffsetDays()
   return (
@@ -25,6 +28,7 @@ export default function App() {
         <NavLink to="/" end>Today</NavLink>
         <NavLink to="/math">Maths</NavLink>
         <NavLink to="/spanish">Spanish</NavLink>
+        <NavLink to="/geo">Geography</NavLink>
         <NavLink to="/puzzle">Puzzle</NavLink>
         <NavLink to="/stats">Progress</NavLink>
         <span className="spacer" />
@@ -36,6 +40,7 @@ export default function App() {
         <Route path="/math" element={<MathPage />} />
         <Route path="/spanish" element={<SpanishPage />} />
         <Route path="/puzzle" element={<PuzzlePage />} />
+        <Route path="/geo" element={<Suspense fallback={<p className="muted">Loading maps…</p>}><GeoPage /></Suspense>} />
         <Route path="/stats" element={<Suspense fallback={<p className="muted">Loading…</p>}><StatsPage /></Suspense>} />
         <Route path="/settings" element={<SettingsPage />} />
       </Routes>

@@ -1,10 +1,11 @@
 # BrainMax
 
-A personal daily training app with three tasks a day and a progress dashboard:
+A personal daily training app with four tasks a day and a progress dashboard:
 
-1. **Mental maths:** 10 timed, adaptive questions at investment-banking numerical-test level.
+1. **Mental maths:** 10 timed, adaptive questions that build up to investment-banking numerical-test level.
 2. **Spanish:** 20 typed answers a day from the 2000 most common words, scheduled with spaced repetition.
-3. **Daily puzzle:** a different puzzle for each day of the week.
+3. **Geography:** 15 cards a day (maps, capitals, flags, rivers, mountains), about 35% of them about the UK.
+4. **Daily puzzle:** a different puzzle for each day of the week.
 
 ## Use it
 
@@ -45,14 +46,23 @@ now and then; restore from the same page (this is also how you move progress bet
   - financial multiples (EV/EBITDA, P/E, EPS, equity value)
   - growth and compounding (rule of 72, CAGR, PV)
   - ±2% estimation
-- **Adaptive levels:** each skill has a level from 1 to 10, moved by a 3-up/1-down staircase that settles near 80% accuracy:
-  - 3 correct answers within the target time move it up
-  - a wrong answer moves it down
-  - a slow correct answer just resets the streak
-- **The daily 10:** 4 from your weakest skills, 4 mixed, and 2 "stretch" questions one level up, interleaved.
-- **Feedback:** every miss shows a worked mental shortcut.
+- **Skill ladders:** each skill is a ladder of 12–18 rungs, each with its own question type, target time and tolerance:
+  - **On-ramp** (rungs 1–3): warm-ups such as 25 × 80 or "18/24 as a %"
+  - **Core**: the bulk of the skill
+  - **IB-ready** (last 4 rungs): numerical-test level, e.g. 5-digit ÷ 3-digit within 0.5%, or a 4-year CAGR
+- **Fast start:** you begin at rung 1 and climb one rung per quick correct answer until your first miss. After that, a
+  3-up/1-down staircase settles near 80% accuracy:
+  - 3 correct answers within the target time move you up
+  - a correct answer within 2× the target keeps your streak; slower than that resets it
+  - a wrong answer moves you down
+- **Skill path:** you start with products, percent-of and fractions. Each other skill unlocks when its building blocks
+  reach rung 4, and comes with a 1-minute technique lesson (readable any time from the Maths page).
+- **The daily 10:** from unlocked skills only. Every skill appears at least once, a newly unlocked skill gets 3 slots,
+  2 "stretch" questions are one rung up, and the rest go to your weakest skills.
+- **Feedback:** every miss shows a worked mental shortcut for that rung's method.
 - **Other modes:** **Exam** (10 minutes, skip allowed, −0.25 marking) and **Speed drill** (80 in 8 minutes).
-- **Answers:** you can type `1.44bn`, `300k`, `15%` or `−20`.
+- **Answers:** you can type `1.44bn`, `300k`, `15%`, `x1.08` or `−20`. For money answers the unit is optional: `120`
+  counts as 120m when the answer is 120m. `11/16` works on "?/16" questions.
 
 ### Spanish
 - **Scheduler:** [FSRS](https://github.com/open-spaced-repetition/ts-fsrs), targeting 90% recall.
@@ -71,6 +81,31 @@ now and then; restore from the same page (this is also how you move progress bet
   - Topped up with core vocabulary that subtitle frequencies underrate (months, colours, everyday nouns).
   - The ordering is approximate.
   - The translations were written by an AI assistant, so expect occasional gaps or odd choices. The override button exists for that.
+
+### Geography
+- **Cards (about 2,300):**
+  - **World:** all 193 UN members plus Vatican City and Palestine. For each one: find it on the map, name it from the
+    map, its capital (both ways) and its flag. Plus about 180 physical features (oceans, seas, rivers, ranges,
+    peaks, deserts, lakes, straits) with click-the-location cards and short fact cards.
+  - **UK:** 107 counties and council areas (47 English ceremonial counties, 32 Scottish council areas, 22 Welsh principal
+    areas, and the 6 Northern Irish counties as points), plus about 250 rivers, national parks, peaks, islands, coasts,
+    cities and lakes.
+- **Scheduling:** the same FSRS scheduler as Spanish. Due cards come first (most-forgotten first) and new cards fill
+  the rest of the 15. New cards arrive best-known first, interleaved about 35% UK to 65% world.
+- **Grading:**
+  - A map click inside the right shape (or near a river or point) is correct.
+  - A neighbouring country or a near miss counts as Hard, with the answer highlighted.
+  - Typed answers allow typos and alternative names, and "I was right" adds your wording permanently.
+  - Capitals accept every defensible answer (e.g. Bolivia: Sucre or La Paz).
+- **Where the data comes from** (built by `node scripts/build-geo.mjs`):
+  - Countries, capitals and alternative names: [mledoze/countries](https://github.com/mledoze/countries) (ODbL).
+  - World map: [world-atlas](https://github.com/topojson/world-atlas) (Natural Earth 1:50m).
+  - UK areas: Natural Earth 1:10m admin-1, grouped into ceremonial counties. The boundaries are simplified, Northern
+    Ireland's counties are approximate points, and Stockton-on-Tees is filed under Durham.
+  - Flags: [flag-icons](https://github.com/lipis/flag-icons) (MIT).
+  - The UK and world physical features and their facts (`src/features/geo/data/curated.json`) were drafted by an AI
+    assistant and checked by two independent AI fact-checkers told to refute each item. Disputed items were dropped
+    and disputed facts or names removed. That removes most errors, not all of them.
 
 ### Puzzles (seeded by date, so each day is fixed)
 
@@ -91,7 +126,9 @@ Any puzzle can also be played as unranked practice.
 - An estimate of how many words you'd recognise today
 - Spanish words by memory strength over time, first-try accuracy, and a 7-day review forecast
 - Most-missed words and "leeches" (words missed 6+ times)
-- Maths levels per skill, plus accuracy and speed trends
+- Maths: progress up each skill ladder, plus accuracy and speed trends
+- Geography: % of countries you could find on a map, capitals and flags known, UK coverage, maps shaded by how well
+  you know each country and county, and most-missed cards
 - Puzzle solve rates and your calibration hit rate
 
 ## A note on "brain training"
@@ -108,9 +145,12 @@ npm run typecheck
 
 - **Tests** cover:
   - answer parsing and tolerances
-  - every maths generator's answer against an independent evaluation
-  - the staircase converging near 80%
+  - every rung of every maths ladder: self-consistent answers, hints that land inside the tolerance, an independent
+    evaluation of pure arithmetic, and no big difficulty dips
+  - fast start, the staircase converging near 80%, skill unlocks and the daily 10
+  - geography data (unique ids, every feature on its map, 30–40% UK), map and name grading, and the review queue
   - a 30-day simulated Spanish learner (missed words recur far more often)
   - 365 days of solvable Countdowns
   - unique-solution KenKens
-- **Stack:** Vite, React, TypeScript, Dexie (IndexedDB), ts-fsrs, Recharts, vite-plugin-pwa.
+- **Stack:** Vite, React, TypeScript, Dexie (IndexedDB), ts-fsrs, Recharts, d3-geo + topojson, vite-plugin-pwa.
+- **Rebuilding geography data:** `node scripts/build-geo.mjs` (downloads Natural Earth into `data/raw/` if missing).

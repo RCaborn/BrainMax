@@ -1,7 +1,11 @@
-/** Rounds away float noise: round(0.1 + 0.2, 6) === 0.3 */
+/**
+ * Rounds half away from zero, ignoring float noise: round(0.1 + 0.2, 6) === 0.3 and
+ * round(28.174999999999997, 2) === 28.18 (the product 4.9 × 1.25 × 4.6 is exactly 28.175).
+ */
 export function round(x: number, dp = 6): number {
   const f = 10 ** dp
-  return Math.round((x + Number.EPSILON * Math.sign(x)) * f) / f
+  const scaled = Number((Math.abs(x) * f).toPrecision(12))
+  return (Math.sign(x) * Math.round(scaled)) / f
 }
 
 /** 12345.5 → "12,345.5" (trims trailing zeros, max 4 dp). */
@@ -28,7 +32,7 @@ const SUFFIX: Record<string, number> = { k: 1e3, m: 1e6, mn: 1e6, mm: 1e6, b: 1e
 export function parseAnswer(raw: string): number | null {
   let s = raw.trim().toLowerCase().replace(/[\s,£$€]/g, '').replace(/[−–—]/g, '-')
   if (!s) return null
-  s = s.replace(/[%x]$/, '')
+  s = s.replace(/^[x×]/, '').replace(/[%x×]$/, '')
   const m = s.match(/^(-?\d*\.?\d+)([a-z]*)$/)
   if (!m) return null
   const value = Number(m[1])
