@@ -1,0 +1,899 @@
+taxi|taxi|nm
+anillo|ring|nm
+preguntar|to ask|v
+victoria|victory|nf
+héroe|hero|nm
+decidir|to decide|v
+responsable|responsible|adj
+trago|drink;sip|nm
+árbol|tree|nm
+diente|tooth|nm
+encantado|delighted;pleased to meet you|adj
+camión|truck;lorry|nm
+vender|to sell|v
+detener|to stop;to arrest|v
+luchar|to fight;to struggle|v
+ruido|noise|nm
+lucha|fight;struggle|nf
+reloj|clock;watch|nm
+gato|cat|nm
+averiguar|to find out|v
+volar|to fly|v
+correr|to run|v
+colegio|school|nm
+sonido|sound|nm
+código|code|nm
+imagen|image;picture|nf
+riesgo|risk|nm
+pan|bread|nm
+hielo|ice|nm
+prensa|press|nf
+televisión|television|nf
+coger|to take;to catch;to grab|v
+posibilidad|possibility|nf
+asiento|seat|nm
+herido|injured;wounded|adj
+proyecto|project|nm
+pared|wall|nf
+sospechoso|suspect;suspicious|adj
+naturaleza|nature|nf
+silla|chair|nf
+arreglar|to fix;to arrange|v
+cantidad|amount;quantity|nf
+llorar|to cry|v
+familiar|family;familiar;relative|adj
+desastre|disaster|nm
+política|politics;policy|nf
+enfermedad|illness;disease|nf
+colega|colleague|nmf
+príncipe|prince|nm
+verde|green|adj
+bajar|to go down;to lower|v
+nervioso|nervous|adj
+inspector|inspector|nm
+servir|to serve|v
+playa|beach|nf
+cantar|to sing|v
+velocidad|speed|nf
+total|total|adj
+cabello|hair|nm
+huella|footprint;fingerprint;trace|nf
+unidad|unit;unity|nf
+cuchillo|knife|nm
+tontería|nonsense;silly thing|nf
+emergencia|emergency|nf
+robo|robbery;theft|nm
+permitir|to allow;to permit|v
+parque|park|nm
+roto|broken|adj
+serie|series|nf
+evidencia|evidence|nf
+botella|bottle|nf
+viento|wind|nm
+mando|command;control|nm
+apoyo|support|nm
+bala|bullet|nf
+tiro|shot|nm
+época|era;time;period|nf
+puente|bridge|nm
+distancia|distance|nf
+desear|to wish;to desire|v
+pelear|to fight|v
+echar|to throw;to throw out|v
+descanso|rest;break|nm
+área|area|nf
+orgulloso|proud|adj
+datos|data|nm
+espectáculo|show;spectacle|nm
+magia|magic|nf
+nacional|national|adj
+universo|universe|nm
+nariz|nose|nf
+vergüenza|shame;embarrassment|nf
+monstruo|monster|nm
+princesa|princess|nf
+autobús|bus|nm
+cuidar|to take care of;to look after|v
+huevo|egg|nm
+paseo|walk;stroll|nm
+detalle|detail|nm
+belleza|beauty|nf
+abierto|open|adj
+enviar|to send|v
+ministro|minister|nm
+conducir|to drive|v
+aceptar|to accept|v
+borracho|drunk|adj
+contrato|contract|nm
+viernes|Friday|nm
+hecho|fact;done|nm
+sociedad|society|nf
+carga|load;charge|nf
+presente|present|adj
+uso|use|nm
+dedo|finger|nm
+oferta|offer|nf
+proteger|to protect|v
+recibir|to receive|v
+agradecer|to thank;to be grateful|v
+robar|to steal;to rob|v
+enamorado|in love|adj
+oeste|west|nm
+herida|wound;injury|nf
+despacio|slowly|adv
+directamente|directly|adv
+inmediato|immediate|adj
+profesional|professional|adj
+oscuro|dark|adj
+mercado|market|nm
+cerdo|pig;pork|nm
+líder|leader|nmf
+grave|serious;grave|adj
+jurado|jury|nm
+desaparecer|to disappear|v
+últimamente|lately|adv
+piedra|stone;rock|nf
+intención|intention|nf
+humor|humor;humour;mood|nm
+peso|weight|nm
+directo|direct|adj
+central|central|adj
+oscuridad|darkness|nf
+actuar|to act|v
+comenzar|to begin;to start|v
+privado|private|adj
+mirada|look;glance|nf
+demonio|demon;devil|nm
+romper|to break|v
+fiscal|prosecutor;district attorney|nmf
+jardín|garden|nm
+natural|natural|adj
+gratis|free|adj
+costar|to cost|v
+amenaza|threat|nf
+marca|brand;mark|nf
+medicina|medicine|nf
+precioso|beautiful;precious|adj
+sexual|sexual|adj
+acceso|access|nm
+necesidad|need;necessity|nf
+dueño|owner|nm
+merecer|to deserve|v
+rayo|ray;lightning|nm
+mentir|to lie|v
+imaginar|to imagine|v
+fantasma|ghost|nm
+pollo|chicken|nm
+espada|sword|nf
+efecto|effect|nm
+felicidad|happiness|nf
+resultado|result|nm
+menor|younger;smaller;minor|adj
+sombrero|hat|nm
+limpio|clean|adj
+correo|mail;post|nm
+vídeo/video|video|nm
+teatro|theatre;theater|nm
+lástima|pity;shame|nf
+calle|street|nf
+responsabilidad|responsibility|nf
+búsqueda|search|nf
+recuerdo|memory;souvenir|nm
+elegir|to choose|v
+cien|hundred;a hundred|num
+almuerzo|lunch|nm
+pago|payment|nm
+normalmente|normally;usually|adv
+pastel|cake|nm
+cinta|tape;ribbon|nf
+costa|coast|nf
+levantar|to lift;to raise|v
+interés|interest|nm
+enfermera|nurse|nf
+comienzo|beginning;start|nm
+militar|military|adj
+polvo|dust;powder|nm
+voluntad|will|nf
+teoría|theory|nf
+cuento|story;tale|nm
+escenario|stage;scenario|nm
+diario|daily;diary;newspaper|adj
+propiedad|property|nf
+agujero|hole|nm
+aspecto|appearance;aspect|nm
+campamento|camp|nm
+descansar|to rest|v
+ángel|angel|nm
+impresionante|impressive|adj
+proceso|process|nm
+fuente|source;fountain|nf
+alcalde|mayor|nm
+carretera|road;highway|nf
+desayuno|breakfast|nm
+débil|weak|adj
+miembro|member|nm
+valiente|brave|adj
+pecho|chest|nm
+periódico|newspaper|nm
+limpiar|to clean|v
+crear|to create|v
+explicar|to explain|v
+resolver|to solve;to resolve|v
+guapo|handsome;good-looking|adj
+continuar|to continue|v
+primo|cousin|nm
+manejar|to handle;to drive|v
+acto|act|nm
+kilómetro|kilometre;kilometer|nm
+premio|prize;award|nm
+inútil|useless|adj
+domingo|Sunday|nm
+sensación|feeling;sensation|nf
+alcohol|alcohol|nm
+antiguo|old;ancient;former|adj
+asustado|scared;frightened|adj
+genio|genius|nm
+recuperar|to recover;to get back|v
+lengua|tongue;language|nf
+ladrón|thief|nm
+examen|exam|nm
+disparar|to shoot;to fire|v
+entrenador|coach;trainer|nm
+queso|cheese|nm
+entero|whole;entire|adj
+modelo|model|nm
+fútbol|football;soccer|nm
+sábado|Saturday|nm
+descubrir|to discover|v
+gordo|fat|adj
+tribunal|court|nm
+tamaño|size|nm
+invitado|guest|nm
+declaración|statement;declaration|nf
+claramente|clearly|adv
+pérdida|loss|nf
+profundo|deep|adj
+aeropuerto|airport|nm
+gloria|glory|nf
+instituto|institute;high school|nm
+disparo|shot|nm
+pertenecer|to belong|v
+cadáver|corpse;body|nm
+gracia|grace;humor|nf
+amante|lover|nmf
+temporada|season|nf
+techo|roof;ceiling|nm
+francés|French|adj
+protección|protection|nf
+venganza|revenge|nf
+discutir|to argue;to discuss|v
+comprender|to understand|v
+camisa|shirt|nf
+superior|superior;upper|adj
+criminal|criminal|adj
+recoger|to pick up;to collect|v
+original|original|adj
+rosa|rose;pink|nf
+sobrevivir|to survive|v
+rostro|face|nm
+crédito|credit|nm
+compartir|to share|v
+registro|record;register|nm
+esquina|corner|nf
+tormenta|storm|nf
+relajarse|to relax|v
+chocolate|chocolate|nm
+pedazo|piece|nm
+olor|smell|nm
+ciencia|science|nf
+conexión|connection|nf
+salón|living room;hall|nm
+sucio|dirty|adj
+firma|signature;firm|nf
+casarse|to get married|v
+bebida|drink|nf
+tercero|third|adj
+lluvia|rain|nf
+complicado|complicated|adj
+visión|vision|nf
+americano|American|adj
+diversión|fun|nf
+curso|course|nm
+disco|disc;record|nm
+probable|probable;likely|adj
+lago|lake|nm
+material|material|nm
+discurso|speech|nm
+corto|short|adj
+lunes|Monday|nm
+efectivo|cash;effective|nm
+cura|cure;priest|nf
+funeral|funeral|nm
+artista|artist|nmf
+favorito|favorite;favourite|adj
+entrevista|interview|nf
+pintura|painting;paint|nf
+quieto|still|adj
+falso|false;fake|adj
+inteligencia|intelligence|nf
+destruir|to destroy|v
+helado|ice cream|nm
+camioneta|van;pickup truck|nf
+mover|to move|v
+aparte|apart;aside|adv
+tumba|tomb;grave|nf
+mapa|map|nm
+tarea|task;homework|nf
+móvil|mobile phone;cell phone|nm
+responder|to answer;to respond|v
+vacío|empty|adj
+computadora|computer|nf
+estudiante|student|nmf
+construir|to build|v
+solución|solution|nf
+mundial|world;worldwide|adj
+plato|plate;dish|nm
+famoso|famous|adj
+tecnología|technology|nf
+condición|condition|nf
+dudar|to doubt|v
+rápidamente|quickly|adv
+nieve|snow|nf
+fecha|date|nf
+violencia|violence|nf
+sujeto|subject;guy|nm
+siglo|century|nm
+cortar|to cut|v
+fortuna|fortune|nf
+archivo|file;archive|nm
+presencia|presence|nf
+aventura|adventure|nf
+gira|tour|nf
+social|social|adj
+comunidad|community|nf
+cero|zero|num
+convertir|to convert;to turn into|v
+pieza|piece;part|nf
+estómago|stomach|nm
+legal|legal|adj
+raro|rare|adj
+reino|kingdom|nm
+alegría|joy;happiness|nf
+barrio|neighborhood;neighbourhood|nm
+granja|farm|nf
+esfuerzo|effort|nm
+tesoro|treasure|nm
+empleo|employment;job|nm
+cirugía|surgery|nf
+clave|key|nf
+aparentemente|apparently|adv
+cerrado|closed|adj
+controlar|to control|v
+mostrar|to show|v
+piloto|pilot|nmf
+bolso|bag;handbag|nm
+respirar|to breathe|v
+aparecer|to appear|v
+campaña|campaign|nf
+amistad|friendship|nf
+corriente|current;ordinary|nf
+hueso|bone|nm
+planta|plant;floor|nf
+ritmo|rhythm;pace|nm
+socio|partner;member|nm
+motor|engine;motor|nm
+mono|monkey;cute|nm
+página|page|nf
+aburrido|bored;boring|adj
+paquete|package;parcel|nm
+combate|combat|nm
+útil|useful|adj
+castillo|castle|nm
+bola|ball|nf
+asistente|assistant|nmf
+tirar|to throw;to pull|v
+honesto|honest|adj
+carro|car;cart|nm
+venta|sale|nf
+huir|to flee;to run away|v
+compromiso|commitment;engagement|nm
+ira|anger;rage|nf
+promesa|promise|nf
+compra|purchase;shopping|nf
+importancia|importance|nf
+lección|lesson|nf
+personalmente|personally|adv
+bolsillo|pocket|nm
+enojado|angry|adj
+desgracia|misfortune|nf
+artículo|article|nm
+labio|lip|nm
+taza|cup;mug|nf
+pelota|ball|nf
+chaqueta|jacket|nf
+atrapar|to catch;to trap|v
+obvio|obvious|adj
+entrenamiento|training|nm
+pescado|fish|nm
+abrigo|coat|nm
+estudiar|to study|v
+sonrisa|smile|nf
+cobarde|coward|nmf
+secundaria|secondary school;high school|nf
+bruja|witch|nf
+veinte|twenty|num
+palacio|palace|nm
+firme|firm;steady|adj
+milagro|miracle|nm
+soportar|to bear;to stand|v
+vecino|neighbour;neighbor|nm
+vaso|glass|nm
+explosión|explosion|nf
+poder|power|nm
+copia|copy|nf
+viajar|to travel|v
+cadena|chain;channel|nf
+fábrica|factory|nf
+meter|to put in|v
+educación|education|nf
+fumar|to smoke|v
+madera|wood|nf
+grado|degree;grade|nm
+tratamiento|treatment|nm
+pizza|pizza|nf
+milla|mile|nf
+cumplir|to fulfil;to fulfill;to turn|v
+plata|silver;money|nf
+lío|mess|nm
+agencia|agency|nf
+humanidad|humanity|nf
+escalera|stairs;ladder|nf
+salvaje|wild;savage|adj
+ambulancia|ambulance|nf
+traducción|translation|nf
+mentiroso|liar|nm
+medio|means;medium|nm
+conocimiento|knowledge|nm
+armario|wardrobe;closet|nm
+lobo|wolf|nm
+tráfico|traffic|nm
+uniforme|uniform|nm
+suave|soft;smooth;gentle|adj
+invierno|winter|nm
+arena|sand|nf
+licencia|licence;license|nf
+espejo|mirror|nm
+ser|being|nm
+azúcar|sugar|nm
+ocasión|occasion|nf
+revisar|to check;to review|v
+sótano|basement|nm
+conciencia|conscience;consciousness|nf
+pesadilla|nightmare|nf
+sopa|soup|nf
+saltar|to jump|v
+suicidio|suicide|nm
+divorcio|divorce|nm
+miel|honey|nf
+particular|particular;private|adj
+frontera|border|nf
+ventaja|advantage|nf
+alerta|alert|nf
+piscina|swimming pool;pool|nf
+comportamiento|behaviour;behavior|nm
+revista|magazine|nf
+canal|channel;canal|nm
+paciencia|patience|nf
+crisis|crisis|nf
+vigilancia|surveillance|nf
+desierto|desert|nm
+cuerda|rope;string|nf
+despierto|awake|adj
+gobernador|governor|nm
+oso|bear|nm
+curiosidad|curiosity|nf
+pez|fish|nm
+torre|tower|nf
+pasillo|corridor;hallway|nm
+arresto|arrest|nm
+sencillo|simple|adj
+ruta|route|nf
+documento|document|nm
+apuesta|bet|nf
+alarma|alarm|nf
+identidad|identity|nf
+aviso|notice;warning|nm
+caza|hunt;hunting|nf
+permanecer|to remain;to stay|v
+altura|height|nf
+versión|version|nf
+incendio|fire|nm
+gritar|to shout;to scream|v
+concierto|concert|nm
+casualidad|chance;coincidence|nf
+excusa|excuse|nf
+rodilla|knee|nf
+cruz|cross|nf
+cómodo|comfortable|adj
+cruel|cruel|adj
+sofá|sofa|nm
+sombra|shadow;shade|nf
+firmar|to sign|v
+escritorio|desk|nm
+muñeca|doll;wrist|nf
+gigante|giant|adj
+pájaro|bird|nm
+ducha|shower|nf
+recompensa|reward|nf
+doce|twelve|num
+actor|actor|nm
+actitud|attitude|nf
+salsa|sauce|nf
+personaje|character|nm
+voto|vote|nm
+comercial|commercial|adj
+tribu|tribe|nf
+fresco|fresh;cool|adj
+poderoso|powerful|adj
+campeón|champion|nm
+ciego|blind|adj
+bestia|beast|nf
+celda|cell|nf
+jueves|Thursday|nm
+montaña|mountain|nf
+medianoche|midnight|nf
+garganta|throat|nf
+sesión|session|nf
+circunstancia|circumstance|nf
+veneno|poison|nm
+primavera|spring|nf
+martes|Tuesday|nm
+feo|ugly|adj
+distrito|district|nm
+reputación|reputation|nf
+castigo|punishment|nm
+límite|limit|nm
+estudio|study|nm
+audiencia|audience;hearing|nf
+nacer|to be born|v
+jugador|player|nm
+humo|smoke|nm
+popular|popular|adj
+nación|nation|nf
+tropa|troop|nf
+explicación|explanation|nf
+celebrar|to celebrate|v
+competencia|competition;competence|nf
+biblioteca|library|nf
+fila|row;line;queue|nf
+misterio|mystery|nm
+puerto|port;harbour;harbor|nm
+vehículo|vehicle|nm
+lograr|to achieve;to manage|v
+patio|courtyard;yard|nm
+pecado|sin|nm
+comité|committee|nm
+rescate|rescue;ransom|nm
+título|title;degree|nm
+pánico|panic|nm
+pasión|passion|nf
+preparar|to prepare|v
+demostrar|to prove;to show|v
+elegante|elegant|adj
+visitar|to visit|v
+asegurar|to ensure;to insure|v
+ambiente|environment;atmosphere|nm
+urgente|urgent|adj
+impuesto|tax|nm
+distinto|different;distinct|adj
+adecuado|suitable;appropriate|adj
+abandonar|to abandon;to leave|v
+apestar|to stink|v
+curioso|curious|adj
+caro|expensive|adj
+asco|disgust|nm
+océano|ocean|nm
+federal|federal|adj
+terapia|therapy|nf
+lágrima|tear|nf
+terreno|land;terrain;ground|nm
+autoridad|authority|nf
+roca|rock|nf
+superficie|surface|nf
+hierba|grass;herb|nf
+crecer|to grow|v
+mental|mental|adj
+extranjero|foreign;foreigner|adj
+lento|slow|adj
+chino|Chinese|adj
+meta|goal;finish line|nf
+despedida|farewell;goodbye|nf
+pasta|pasta;paste|nf
+cristal|glass;crystal|nm
+guardar|to keep;to save|v
+fotografía|photograph;photography|nf
+patrón|boss;pattern|nm
+desafío|challenge|nm
+asombroso|amazing;astonishing|adj
+clínica|clinic|nf
+experto|expert|nm
+medida|measure;measurement|nf
+anuncio|advertisement;announcement|nm
+física|physics|nf
+fiebre|fever|nf
+organización|organization;organisation|nf
+deuda|debt|nf
+transporte|transport;transportation|nm
+cocinar|to cook|v
+delicioso|delicious|adj
+habilidad|skill;ability|nf
+admitir|to admit|v
+templo|temple|nm
+maravilla|wonder;marvel|nf
+quitar|to remove;to take off|v
+piano|piano|nm
+pantalla|screen|nf
+civil|civil;civilian|adj
+gasolina|petrol;gasoline|nf
+tripulación|crew|nf
+cruzar|to cross|v
+guía|guide|nmf
+enseñar|to teach;to show|v
+conferencia|conference;lecture|nf
+galleta|biscuit;cookie|nf
+atacar|to attack|v
+objeto|object|nm
+museo|museum|nm
+rueda|wheel|nf
+recientemente|recently|adv
+sufrir|to suffer|v
+disponible|available|adj
+práctica|practice|nf
+pastilla|pill;tablet|nf
+cable|cable;wire|nm
+nacimiento|birth|nm
+consciente|conscious;aware|adj
+alcance|reach;scope|nm
+evento|event|nm
+alquiler|rent;rental|nm
+ordenador|computer|nm
+incidente|incident|nm
+pensamiento|thought|nm
+maleta|suitcase|nf
+condado|county|nm
+kilo|kilo|nm
+español|Spanish|adj
+renunciar|to resign;to give up|v
+refugio|refuge;shelter|nm
+reacción|reaction|nf
+rumor|rumour;rumor|nm
+celoso|jealous|adj
+utilizar|to use|v
+territorio|territory|nm
+prácticamente|practically|adv
+disfrutar|to enjoy|v
+collar|necklace;collar|nm
+cercano|close;nearby|adj
+montar|to ride;to assemble|v
+instrucción|instruction|nf
+treinta|thirty|num
+moto|motorbike;motorcycle|nf
+cigarrillo|cigarette|nm
+emperador|emperor|nm
+mortal|mortal;deadly|adj
+metal|metal|nm
+puro|pure|adj
+botón|button|nm
+empleado|employee|nm
+prisionero|prisoner|nm
+crema|cream|nf
+golpear|to hit;to strike|v
+cultura|culture|nf
+revolución|revolution|nf
+hombro|shoulder|nm
+bota|boot|nf
+adorar|to adore|v
+biblia|bible|nf
+saludo|greeting|nm
+adulto|adult|nmf
+serpiente|snake|nf
+romántico|romantic|adj
+posiblemente|possibly|adv
+aliento|breath|nm
+placa|plate;badge|nf
+rata|rat|nf
+cuadro|painting;picture;square|nm
+afortunado|lucky;fortunate|adj
+bicicleta|bicycle;bike|nf
+mejorar|to improve|v
+concurso|contest;competition|nm
+comisaría|police station|nf
+sincero|sincere|adj
+centavo|cent|nm
+recurso|resource|nm
+raza|race;breed|nf
+imaginación|imagination|nf
+ceremonia|ceremony|nf
+almacén|warehouse;store|nm
+sabor|taste;flavour;flavor|nm
+unión|union|nf
+reserva|reservation;reserve|nf
+calidad|quality|nf
+aceite|oil|nm
+punta|tip;point|nf
+cinturón|belt|nm
+chiste|joke|nm
+consecuencia|consequence|nf
+vaca|cow|nf
+investigar|to investigate|v
+actual|current;present|adj
+instante|instant;moment|nm
+frase|sentence;phrase|nf
+moral|moral|adj
+discusión|argument;discussion|nf
+manzana|apple;block|nf
+sed|thirst|nf
+joya|jewel|nf
+noble|noble|adj
+vía|way;track;road|nf
+sacerdote|priest|nm
+resistencia|resistance|nf
+arroz|rice|nm
+desconocido|unknown;stranger|adj
+mínimo|minimum|adj
+bandera|flag|nf
+plaza|square;place|nf
+imperio|empire|nm
+cartera|wallet|nf
+depósito|deposit;tank|nm
+periodista|journalist|nmf
+tensión|tension|nf
+círculo|circle|nm
+grito|scream;shout|nm
+ascensor|lift;elevator|nm
+helicóptero|helicopter|nm
+entregar|to deliver;to hand over|v
+limpieza|cleaning|nf
+magnífico|magnificent|adj
+trabajador|worker;hard-working|nm
+caída|fall|nf
+temperatura|temperature|nf
+ejercicio|exercise|nm
+lealtad|loyalty|nf
+ala|wing|nf
+diamante|diamond|nm
+invitación|invitation|nf
+leyenda|legend|nf
+paraíso|paradise|nm
+costumbre|custom;habit|nf
+cabaña|cabin;hut|nf
+secretaria|secretary|nf
+lentamente|slowly|adv
+ensayo|rehearsal;essay;trial|nm
+gimnasio|gym|nm
+negativo|negative|adj
+lenguaje|language|nm
+garaje|garage|nm
+palo|stick|nm
+león|lion|nm
+oído|ear;hearing|nm
+científico|scientist;scientific|nm
+actividad|activity|nf
+dragón|dragon|nm
+aguantar|to stand;to put up with;to hold|v
+generación|generation|nf
+capital|capital|nf
+barato|cheap|adj
+fingir|to pretend|v
+miércoles|Wednesday|nm
+escritor|writer|nm
+solitario|lonely;solitary|adj
+recibo|receipt|nm
+almorzar|to have lunch|v
+salto|jump|nm
+publicidad|advertising;publicity|nf
+temporal|temporary|adj
+antecedentes|record;background|nm
+atractivo|attractive|adj
+barra|bar|nf
+aniversario|anniversary|nm
+quince|fifteen|num
+muro|wall|nm
+reír|to laugh|v
+producto|product|nm
+abrazo|hug|nm
+gafas|glasses|nf
+sobrino|nephew|nm
+demanda|demand;lawsuit|nf
+construcción|construction;building|nf
+criatura|creature|nf
+internacional|international|adj
+trozo|piece|nm
+actriz|actress|nf
+vecindario|neighbourhood;neighborhood|nm
+razonable|reasonable|adj
+gerente|manager|nmf
+sensible|sensitive|adj
+personalidad|personality|nf
+grano|grain;spot|nm
+moneda|coin;currency|nf
+ciudadano|citizen|nm
+encerrar|to lock up|v
+borde|edge|nm
+expresión|expression|nf
+escándalo|scandal|nm
+nervio|nerve|nm
+emoción|emotion;excitement|nf
+perdedor|loser|nm
+valle|valley|nm
+preocupación|worry;concern|nf
+desnudo|naked|adj
+mayo|May|nm
+caos|chaos|nm
+alternativa|alternative|nf
+estupidez|stupidity|nf
+sorprendente|surprising|adj
+egoísta|selfish|adj
+juventud|youth|nf
+religión|religion|nf
+risa|laugh;laughter|nf
+miserable|miserable|adj
+hierro|iron|nm
+corona|crown|nf
+mencionar|to mention|v
+grabación|recording|nf
+producción|production|nf
+nuclear|nuclear|adj
+clima|climate;weather|nm
+carácter|character;temper|nm
+máscara|mask|nf
+alegre|cheerful;happy|adj
+alianza|alliance|nf
+positivo|positive|adj
+desafortunadamente|unfortunately|adv
+guitarra|guitar|nf
+estrategia|strategy|nf
+frecuencia|frequency|nf
+prohibido|forbidden;prohibited|adj
+existencia|existence|nf
+túnel|tunnel|nm
+industria|industry|nf
+colección|collection|nf
+fatal|fatal;awful|adj
+expediente|file;record|nm
+petición|request;petition|nf
+presentación|presentation|nf
+coraje|courage|nm
+caridad|charity|nf
+capítulo|chapter|nm
+breve|brief;short|adj
+acero|steel|nm
+confesión|confession|nf
+diseño|design|nm
+político|political;politician|adj
+impacto|impact|nm
+equipaje|luggage;baggage|nm
+sufrimiento|suffering|nm
+adolescente|teenager;adolescent|nmf
+soltero|single;bachelor|adj
+influencia|influence|nf
+oxígeno|oxygen|nm
+experimento|experiment|nm
+absurdo|absurd|adj
+devolver|to return;to give back|v
+propuesta|proposal|nf
+traición|betrayal;treason|nf
+cementerio|cemetery|nm
+pozo|well|nm
+patrulla|patrol|nf
+tragedia|tragedy|nf
+procedimiento|procedure|nm
+fantasía|fantasy|nf
+billete|ticket;banknote|nm
+secuestro|kidnapping|nm
+conejo|rabbit|nm
+significado|meaning|nm
+cincuenta|fifty|num
+alcanzar|to reach|v
+tradición|tradition|nf
+ocultar|to hide|v

@@ -1,0 +1,313 @@
+de|of;from|prep
+que|that;which;what;than|conj
+no|no;not|adv
+a|to;at|prep
+el|the|det
+la|the|det
+y|and|conj
+ser|to be|v
+en|in;on;at|prep
+lo|it;him;the|pron
+un|a;an;one|det
+por|for;by;through;because of|prep
+qué|what|pron
+me|me;myself|pron
+estar|to be|v
+se|himself;herself;itself;themselves;oneself|pron
+te|you;yourself|pron
+con|with|prep
+para|for;in order to|prep
+mi|my|det
+pero|but|conj
+sí|yes|adv
+si|if;whether|conj
+bien|well;good;fine|adv
+eso|that|pron
+su|his;her;its;their;your|det
+yo|I|pron
+como|like;as|conj
+aquí|here|adv
+tu|your|det
+más|more;most|adv
+le|him;her;you;to him;to her|pron
+esto|this|pron
+todo|all;everything;every|det
+ya|already;now|adv
+ahora|now|adv
+muy|very|adv
+haber|to have|v
+este|this|det
+así|like this;like that;so;thus|adv
+ir|to go|v
+algo|something;anything;somewhat|pron
+hay|there is;there are|v
+bueno|good;well|adj
+tener|to have|v
+cuando|when|conj
+saber|to know|v
+tú|you|pron
+nos|us;ourselves|pron
+nada|nothing;anything|pron
+cómo|how|adv
+o|or|conj
+él|he;him|pron
+hacer|to do;to make|v
+poder|to be able to;can|v
+ella|she;her|pron
+querer|to want;to love|v
+gracias|thanks;thank you|int
+vez|time;occasion|nf
+solo|only;just;alone|adv
+porque|because|conj
+creer|to believe;to think|v
+usted|you|pron
+entonces|then;so|adv
+hola|hello;hi|int
+verdad|truth|nf
+casa|house;home|nf
+tan|so;as|adv
+quién|who|pron
+tiempo|time;weather|nm
+dos|two|num
+ese|that|det
+nunca|never|adv
+dónde|where|adv
+mucho|a lot;much;many|adv
+favor|favor;favour|nm
+mí|me|pron
+sentir|to feel;to be sorry|v
+señor|sir;mister;gentleman;lord|nm
+mejor|better;best|adj
+decir|to say;to tell|v
+también|also;too|adv
+sobre|on;about;over|prep
+dios|god|nm
+sin|without|prep
+ver|to see;to watch|v
+hombre|man|nm
+vida|life|nf
+alguien|someone;somebody;anyone|pron
+cosa|thing|nf
+siempre|always|adv
+hasta|until;up to;even|prep
+ahí|there|adv
+año|year|nm
+antes|before|adv
+ni|nor;not even;neither|conj
+poco|little;few;a bit|adv
+día|day|nm
+uno|one|num
+noche|night|nf
+otro|other;another|adj
+acuerdo|agreement|nm
+trabajo|work;job|nm
+nosotros|we;us|pron
+parecer|to seem;to look like|v
+gente|people|nf
+padre|father|nm
+mirar|to look;to watch|v
+mismo|same;self|adj
+nadie|nobody;no one;anyone|pron
+hablar|to speak;to talk|v
+ellos|they;them|pron
+tal|such|adj
+pasar|to happen;to pass;to spend|v
+fuera|out;outside|adv
+después|after;afterwards;later|adv
+desde|from;since|prep
+dinero|money|nm
+mundo|world|nm
+claro|clear;of course|adj
+momento|moment|nm
+mañana|tomorrow;morning|adv
+madre|mother|nf
+valer|to be worth;to cost|v
+lugar|place|nm
+donde|where|adv
+seguro|sure;safe;insurance|adj
+esperar|to wait;to hope;to expect|v
+nuevo|new|adj
+hijo|son;child|nm
+allí|there|adv
+menos|less;fewer;minus|adv
+tipo|type;kind;guy|nm
+amigo|friend|nm
+grande|big;large;great|adj
+nuestro|our|det
+mujer|woman;wife|nf
+mamá|mom;mum|nf
+luego|later;then|adv
+papá|dad|nm
+hoy|today|adv
+tres|three|num
+necesitar|to need|v
+oír|to hear|v
+gustar|to like;to please|v
+parte|part|nf
+nombre|name|nm
+mal|bad;badly|adv
+deber|to have to;must;to owe|v
+realmente|really|adv
+aún|still;yet|adv
+cada|each;every|det
+importar|to matter;to import|v
+razón|reason|nf
+alguno|some;any|det
+tanto|so much;as much|adv
+serio|serious|adj
+venir|to come|v
+idea|idea|nf
+tarde|late;afternoon|adv
+problema|problem|nm
+hora|hour;time|nf
+cierto|true;certain|adj
+quien|who|pron
+demasiado|too;too much|adv
+amor|love|nm
+entre|between;among|prep
+familia|family|nf
+policía|police|nf
+ustedes|you|pron
+chica|girl|nf
+chico|boy|nm
+cuenta|account;bill;check|nf
+todavía|still;yet|adv
+salir|to leave;to go out|v
+hermano|brother|nm
+pensar|to think|v
+cabeza|head|nf
+cariño|darling;affection;honey|nm
+cualquier|any;whichever|det
+forma|form;shape;way|nf
+mientras|while|conj
+lado|side|nm
+caso|case|nm
+primero|first|adj
+genial|great;brilliant|adj
+supuesto|supposed|adj
+pues|well;then;since|conj
+adiós|goodbye;bye|int
+persona|person|nf
+señora|lady;madam;mrs|nf
+volver|to return;to come back|v
+quizá/quizás|maybe;perhaps|adv
+contra|against|prep
+camino|path;road;way|nm
+durante|during|prep
+manera|way;manner|nf
+muerto|dead|adj
+rápido|fast;quick;quickly|adj
+cuál|which;what|pron
+ayuda|help|nf
+historia|history;story|nf
+suponer|to suppose;to assume|v
+dentro|inside;within|adv
+casi|almost;nearly|adv
+puerta|door|nf
+semana|week|nf
+hacia|toward;towards|prep
+juntos|together|adj
+niño|child;boy;kid|nm
+pronto|soon|adv
+tío|uncle;guy|nm
+suerte|luck|nf
+ciudad|city|nf
+siquiera|even|adv
+feliz|happy|adj
+hija|daughter|nf
+minuto|minute|nm
+cuánto|how much;how many|adv
+muerte|death|nf
+dejar|to leave;to let;to allow|v
+realidad|reality|nf
+importante|important|adj
+corazón|heart|nm
+miedo|fear|nm
+jefe|boss;chief|nm
+agua|water|nf
+justo|fair;just;exactly|adj
+esposa|wife|nf
+mano|hand|nf
+ojo|eye|nm
+adelante|forward;ahead|adv
+encontrar|to find|v
+cinco|five|num
+ninguno|none;no;neither|det
+cara|face|nf
+cuidado|care;careful|nm
+bajo|under;low;short|prep
+cerca|near;close|adv
+viejo|old|adj
+bastante|enough;quite|adv
+fin|end|nm
+tomar|to take;to drink|v
+único|only;unique|adj
+escuchar|to listen;to hear|v
+suficiente|enough;sufficient|adj
+punto|point;dot|nm
+cuándo|when|adv
+seguir|to follow;to continue|v
+equipo|team;equipment|nm
+llegar|to arrive;to reach|v
+incluso|even;including|adv
+doctor|doctor|nm
+difícil|difficult;hard|adj
+aunque|although;even though|conj
+coche|car|nm
+clase|class|nf
+cuatro|four|num
+pequeño|small;little|adj
+llamar|to call|v
+allá|over there;there|adv
+último|last;latest|adj
+arriba|up;above;upstairs|adv
+tierra|earth;land;ground|nf
+guerra|war|nf
+igual|equal;same|adj
+loco|crazy;mad|adj
+sangre|blood|nf
+vuelta|turn;return|nf
+trabajar|to work|v
+juego|game|nm
+cuerpo|body|nm
+entrar|to enter;to go in|v
+oportunidad|opportunity;chance|nf
+teléfono|telephone;phone|nm
+listo|ready;clever;smart|adj
+fiesta|party|nf
+dar|to give|v
+vivir|to live|v
+posible|possible|adj
+hermana|sister|nf
+número|number|nm
+mes|month|nm
+exactamente|exactly|adv
+culpa|fault;blame;guilt|nf
+abajo|down;below;downstairs|adv
+escuela|school|nf
+fuerte|strong;loud|adj
+pregunta|question|nf
+atrás|back;behind|adv
+malo|bad|adj
+capitán|captain|nm
+bebé|baby|nm
+segundo|second|adj
+mayor|older;bigger;greater;major|adj
+comida|food;meal|nf
+morir|to die|v
+conocer|to know;to meet|v
+fácil|easy|adj
+comer|to eat|v
+vino|wine|nm
+lista|list|nf
+probablemente|probably|adv
+padres|parents|nm
+habitación|room;bedroom|nf
+buscar|to look for;to search|v
+tratar|to try;to treat|v
+tampoco|neither;either;not either|adv
+joven|young|adj
+par|pair;couple|nm
+simplemente|simply;just|adv
+medio|half;middle;means|adj
+sentido|sense;meaning|nm
