@@ -3,10 +3,12 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { db } from '../lib/db'
 import { addDays, dayKey, now } from '../lib/day'
-import { streak, bestStreak, tasksDone, placementKnown } from '../lib/progress'
+import { streak, bestStreak, tasksDone, placementKnown, geoLaunchDay, taskCount } from '../lib/progress'
+import { GeoSection } from '../features/geo/GeoStats'
 import { recallEstimate } from '../features/spanish/scheduler'
 import { WORD_BY_ID, TOTAL_WORDS, spanishDisplay } from '../features/spanish/words'
-import { CATEGORIES, targetMsFor } from '../features/math/generators'
+import { CATEGORIES, type CategoryId, rungCount, targetMsFor, tierOf } from '../features/math/generators'
+import { unlockedSkills, defaultLevels } from '../features/math/engine'
 import { PUZZLE_INFO, type PuzzleType } from '../features/puzzles/rotation'
 import { fmtTime } from '../features/puzzles/ui/common'
 
@@ -60,6 +62,9 @@ export default function StatsPage() {
     puzzles: await db.puzzles.toArray(),
     fermi: await db.fermi.toArray(),
     known: await placementKnown(),
+    geoLaunch: await geoLaunchDay(),
+    geoCards: await db.geoCards.toArray(),
+    geoReviews: await db.geoReviews.toArray(),
   }), [])
 
   if (!data) return <p className="muted">Loading…</p>
@@ -70,7 +75,8 @@ export default function StatsPage() {
   // --- headline numbers
   const recall = recallEstimate(data.cards, data.known, t)
   const production = data.cards.filter((x) => x.dir === 'p' && x.stability >= 7).length
-  const avgLevel = data.levels.length ? data.levels.reduce((s, l) => s + l.level, 0) / data.levels.length : 5
+  const lvOf = (id: CategoryId) => data.levels.find((l) => l.category === id)?.level ?? 1
+  const ladderPct = Math.round((CATEGORIES.reduce((s, c) => s + lvOf(c.id) / rungCount(c.id), 0) / CATEGORIES.length) * 100)
   const activeDays = data.days.filter((d) => tasksDone(d) > 0).length
 
   // --- heatmap: 53 weeks ending this week
@@ -99,8 +105,10 @@ export default function StatsPage() {
   // --- maths
   const daily = data.sessions.filter((s) => s.mode === 'daily')
   const mathSeries = daily.map((s) => ({ day: shortDay(s.day), Accuracy: (s.correct / s.total) * 100, Seconds: s.totalMs / 1000 / s.total }))
-  const levelOf = (id: string) => data.levels.find((l) => l.category === id)?.level ?? 5
-  const levelBars = CATEGORIES.map((cat) => ({ name: cat.name, Level: levelOf(cat.id) }))
+  const levelsForUnlock = defaultLevels()
+  for (const l of data.levels) if (l.category in levelsForUnlock) levelsForUnlock[l.category as CategoryId].level = l.level
+  const unlocked = new Set(unlockedSkills(levelsForUnlock))
+  const levelBars = CATEGORIES.map((cat) => ({ name: cat.name, Progress: unlocked.has(cat.id) ? Math.round((lvOf(cat.id) / rungCount(cat.id)) * 100) : 0 }))
 
   // --- puzzles
   const types = Object.keys(PUZZLE_INFO) as PuzzleType[]
@@ -110,11 +118,11 @@ export default function StatsPage() {
     <>
       <h1>Progress</h1>
       <div className="grid cols-3" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))' }}>
-        <div className="card stat"><div className="value">{streak(data.days, today)}</div><div className="label">day streak (best {bestStreak(data.days)})</div></div>
+        <div className="card stat"><div className="value">{streak(data.days, today, data.geoLaunch)}</div><div className="label">day streak (best {bestStreak(data.days, data.geoLaunch)})</div></div>
         <div className="card stat"><div className="value">{activeDays}</div><div className="label">active days</div></div>
         <div className="card stat"><div className="value">~{recall}</div><div className="label">of {TOTAL_WORDS} words you'd recognise today</div></div>
         <div className="card stat"><div className="value">{production}</div><div className="label">words you can produce (EN→ES)</div></div>
-        <div className="card stat"><div className="value">{avgLevel.toFixed(1)}</div><div className="label">average maths level /10</div></div>
+        <div className="card stat"><div className="value">{ladderPct}%</div><div className="label">of the way up the maths ladders</div></div>
       </div>
 
       <div className="card">
@@ -122,11 +130,12 @@ export default function StatsPage() {
         <div className="heatmap" role="img" aria-label="Tasks completed per day over the last year">
           {cells.map((d) => {
             const n = tasksDone(byDay.get(d))
-            return <div key={d} title={`${d}: ${n}/3 tasks`} style={{ background: c.seq[n] }} />
+            const total = taskCount(d, data.geoLaunch)
+            return <div key={d} title={`${d}: ${n}/${total} tasks`} style={{ background: c.seq[Math.round((n / total) * 3)] }} />
           })}
         </div>
         <div className="row small muted" style={{ gap: 6, marginTop: 6 }}>
-          0 {c.seq.map((col, i) => <span key={i} style={{ width: 12, height: 12, borderRadius: 3, background: col, display: 'inline-block' }} />)} 3 tasks
+          none {c.seq.map((col, i) => <span key={i} style={{ width: 12, height: 12, borderRadius: 3, background: col, display: 'inline-block' }} />)} all tasks
         </div>
       </div>
 
@@ -202,14 +211,14 @@ export default function StatsPage() {
       <h2 style={{ marginTop: 24 }}>Mental maths</h2>
       <div className="grid cols-2">
         <div className="card">
-          <h3>Level by skill</h3>
+          <h3>Progress up each skill ladder</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={levelBars} layout="vertical" margin={{ top: 0, right: 16, left: 8, bottom: 0 }}>
               <CartesianGrid horizontal={false} stroke={c.grid} />
-              <XAxis type="number" domain={[0, 10]} {...axis} ticks={[0, 2, 4, 6, 8, 10]} />
+              <XAxis type="number" domain={[0, 100]} {...axis} ticks={[0, 25, 50, 75, 100]} unit="%" />
               <YAxis type="category" dataKey="name" {...axis} width={150} />
-              <Tooltip content={<Tip />} cursor={{ fill: c.grid, opacity: 0.4 }} />
-              <Bar dataKey="Level" fill={c.s1} radius={[0, 4, 4, 0]} barSize={14} />
+              <Tooltip content={<Tip unit="%" />} cursor={{ fill: c.grid, opacity: 0.4 }} />
+              <Bar dataKey="Progress" fill={c.s1} radius={[0, 4, 4, 0]} barSize={14} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -244,7 +253,7 @@ export default function StatsPage() {
       <div className="card">
         <h3>Skill breakdown (last 50 answers per skill, excluding speed drills)</h3>
         <table>
-          <thead><tr><th>Skill</th><th className="num">Level</th><th className="num">Answers</th><th className="num">Accuracy</th><th className="num">Median time</th><th className="num">Target now</th></tr></thead>
+          <thead><tr><th>Skill</th><th className="num">Rung</th><th>Tier</th><th className="num">Answers</th><th className="num">Accuracy</th><th className="num">Median time</th><th className="num">Target now</th></tr></thead>
           <tbody>
             {CATEGORIES.map((cat) => {
               const rows = data.attempts.filter((a) => a.category === cat.id && a.mode !== 'drill').sort((a, b) => b.ts - a.ts).slice(0, 50)
@@ -252,17 +261,20 @@ export default function StatsPage() {
               return (
                 <tr key={cat.id}>
                   <td>{cat.name}</td>
-                  <td className="num">{levelOf(cat.id)}</td>
+                  <td className="num">{unlocked.has(cat.id) ? `${lvOf(cat.id)}/${rungCount(cat.id)}` : 'locked'}</td>
+                  <td className="small muted">{unlocked.has(cat.id) ? tierOf(cat.id, lvOf(cat.id)) : ''}</td>
                   <td className="num">{rows.length}</td>
                   <td className="num">{acc === null ? '–' : `${acc}%`}</td>
                   <td className="num">{rows.length ? `${(median(rows.map((r) => r.ms)) / 1000).toFixed(1)}s` : '–'}</td>
-                  <td className="num">{(targetMsFor(cat.id, levelOf(cat.id)) / 1000).toFixed(1)}s</td>
+                  <td className="num">{(targetMsFor(cat.id, lvOf(cat.id)) / 1000).toFixed(1)}s</td>
                 </tr>
               )
             })}
           </tbody>
         </table>
       </div>
+
+      <GeoSection cards={data.geoCards} reviews={data.geoReviews} colors={c} />
 
       <h2 style={{ marginTop: 24 }}>Puzzles</h2>
       <div className="grid cols-2">

@@ -63,6 +63,8 @@ export interface MathLevel {
   category: string
   level: number
   streak: number
+  /** Fast-start phase (v2 ladders): climb a rung per fast correct answer until the first miss. */
+  calibrating?: boolean
 }
 
 export interface PuzzleResult {
@@ -94,6 +96,40 @@ export interface DailyStatus {
   spanish: boolean
   puzzle: boolean
   spanishCount: number
+  geo?: boolean
+  geoCount?: number
+}
+
+export interface GeoCard {
+  id: string
+  itemId: string
+  type: string
+  uk: boolean
+  due: number
+  stability: number
+  difficulty: number
+  elapsed_days: number
+  scheduled_days: number
+  learning_steps: number
+  reps: number
+  lapses: number
+  state: number
+  last_review: number | null
+  created: string
+}
+
+export interface GeoReview {
+  id?: number
+  cardId: string
+  itemId: string
+  type: string
+  uk: boolean
+  ts: number
+  day: string
+  rating: number
+  result: string
+  ms: number
+  answer: string
 }
 
 export interface Snapshot {
@@ -127,6 +163,8 @@ export class BrainDb extends Dexie {
   snapshots!: Table<Snapshot, string>
   accepted!: Table<Accepted, string>
   meta!: Table<Meta, string>
+  geoCards!: Table<GeoCard, string>
+  geoReviews!: Table<GeoReview, number>
 
   constructor(name = 'brainmax') {
     super(name)
@@ -143,6 +181,10 @@ export class BrainDb extends Dexie {
       accepted: 'key',
       meta: 'key',
     })
+    this.version(2).stores({
+      geoCards: 'id, itemId, due, state',
+      geoReviews: '++id, cardId, itemId, day, ts',
+    })
   }
 }
 
@@ -157,14 +199,14 @@ export const setMeta = (key: string, value: unknown) => db.meta.put({ key, value
 
 export async function markDaily(day: string, patch: Partial<Omit<DailyStatus, 'day'>>) {
   await db.transaction('rw', db.daily, async () => {
-    const cur = (await db.daily.get(day)) ?? { day, math: false, spanish: false, puzzle: false, spanishCount: 0 }
+    const cur = (await db.daily.get(day)) ?? { day, math: false, spanish: false, puzzle: false, spanishCount: 0, geo: false, geoCount: 0 }
     await db.daily.put({ ...cur, ...patch })
   })
 }
 
 const TABLES = [
   'cards', 'reviews', 'mathAttempts', 'mathSessions', 'mathLevels',
-  'puzzles', 'fermi', 'daily', 'snapshots', 'accepted', 'meta',
+  'puzzles', 'fermi', 'daily', 'snapshots', 'accepted', 'meta', 'geoCards', 'geoReviews',
 ] as const
 
 export async function exportAll(): Promise<string> {
@@ -180,7 +222,7 @@ export async function importAll(json: string) {
     for (const t of TABLES) {
       await db.table(t).clear()
       const rows = parsed.data[t]
-      if (Array.isArray(rows)) await db.table(t).bulkPut(rows)
+      if (Array.isArray(rows)) await db.table(t).bulkPut(rows) // older backups simply lack the newer tables
     }
   })
 }

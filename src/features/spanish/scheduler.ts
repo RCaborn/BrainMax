@@ -1,73 +1,32 @@
-import { type Card, type Grade as FsrsGrade, Rating, State, createEmptyCard, fsrs } from 'ts-fsrs'
 import type { Dir, StoredCard } from '../../lib/db'
 import { type Rng, shuffle } from '../../lib/rng'
+import { type Grade, Rating, State, bucket as srsBucket, nextFields, retrievability as srsRetrievability, scheduler } from '../../lib/srs'
 import { WORDS } from './words'
 
+export { scheduler }
 export const DAILY_SIZE = 20
 export const EXTRA_SIZE = 10
 export const PRODUCTION_UNLOCK_STABILITY = 7 // days
 export const SPOT_CHECKS_PER_DAY = 2
 export const PROVISIONAL_STABILITY = 30
 export const LEECH_LAPSES = 6
-export const MATURE_STABILITY = 21
-
-// One graded answer per card per day; in-session retries are handled by the session, so
-// FSRS short-term (minute-level) steps are disabled.
-export const scheduler = fsrs({ request_retention: 0.9, enable_short_term: false, enable_fuzz: true, maximum_interval: 3650 })
+export { MATURE_STABILITY } from '../../lib/srs'
 
 export const cardId = (wordId: number, dir: Dir) => `${wordId}:${dir}`
 
-export function toCard(s: StoredCard): Card {
-  return {
-    due: new Date(s.due),
-    stability: s.stability,
-    difficulty: s.difficulty,
-    elapsed_days: s.elapsed_days,
-    scheduled_days: s.scheduled_days,
-    learning_steps: s.learning_steps,
-    reps: s.reps,
-    lapses: s.lapses,
-    state: s.state,
-    last_review: s.last_review ? new Date(s.last_review) : undefined,
-  }
-}
-
-export function fromCard(c: Card, wordId: number, dir: Dir, created: string): StoredCard {
-  return {
-    id: cardId(wordId, dir),
-    wordId,
-    dir,
-    due: c.due.getTime(),
-    stability: c.stability,
-    difficulty: c.difficulty,
-    elapsed_days: c.elapsed_days,
-    scheduled_days: c.scheduled_days,
-    learning_steps: c.learning_steps,
-    reps: c.reps,
-    lapses: c.lapses,
-    state: c.state,
-    last_review: c.last_review ? c.last_review.getTime() : null,
-    created,
-  }
-}
-
 /** Probability you'd recall the card right now (0..1). */
-export function retrievability(s: StoredCard, now: Date): number {
-  if (s.state === State.New || !s.last_review) return 0
-  return scheduler.get_retrievability(toCard(s), now, false)
-}
+export const retrievability = (s: StoredCard, now: Date) => srsRetrievability(s, now)
 
 /** Applies one graded answer; `spot` marks a correct placement spot-check (gets provisional stability). */
-export function review(existing: StoredCard | undefined, wordId: number, dir: Dir, rating: FsrsGrade, now: Date, day: string, spot = false): StoredCard {
-  const base = existing ? toCard(existing) : createEmptyCard(now)
-  const next = scheduler.next(base, now, rating).card
+export function review(existing: StoredCard | undefined, wordId: number, dir: Dir, rating: Grade, now: Date, day: string, spot = false): StoredCard {
+  const next = nextFields(existing, rating, now, day)
   if (spot && !existing && rating !== Rating.Again) {
     next.stability = Math.max(next.stability, PROVISIONAL_STABILITY)
     next.state = State.Review
     next.scheduled_days = PROVISIONAL_STABILITY
-    next.due = new Date(now.getTime() + PROVISIONAL_STABILITY * 86_400_000)
+    next.due = now.getTime() + PROVISIONAL_STABILITY * 86_400_000
   }
-  return fromCard(next, wordId, dir, existing?.created ?? day)
+  return { id: cardId(wordId, dir), wordId, dir, ...next }
 }
 
 export type ItemKind = 'review' | 'new' | 'spot'
@@ -131,11 +90,8 @@ export function buildQueue(inp: QueueInput): QueueItem[] {
   return items
 }
 
-export type Bucket = 'learning' | 'young' | 'mature'
-export function bucket(c: StoredCard): Bucket {
-  if (c.state === State.Learning || c.state === State.Relearning || c.stability < 7) return 'learning'
-  return c.stability >= MATURE_STABILITY ? 'mature' : 'young'
-}
+export type { Bucket } from '../../lib/srs'
+export const bucket = (c: StoredCard) => srsBucket(c)
 
 /** Estimated number of words you'd recognise today. */
 export function recallEstimate(cards: StoredCard[], placementKnown: Set<number>, now: Date): number {
