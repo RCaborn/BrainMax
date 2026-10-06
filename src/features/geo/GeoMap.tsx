@@ -1,32 +1,13 @@
 import { type ReactNode, useMemo, useRef } from 'react'
-import { geoMercator, geoNaturalEarth1, geoPath, geoTransverseMercator, type GeoProjection } from 'd3-geo'
+import { geoPath } from 'd3-geo'
 import type { Feature, FeatureCollection, Geometry } from 'geojson'
 import type { GeoItem, MapView } from './types'
+import { H, W, projectionFor } from './projection'
 
 export interface MapData {
   world: FeatureCollection<Geometry, { id: string }>
   ukAreas: FeatureCollection<Geometry, { id: string; name: string; nation: string }>
   ukNations: FeatureCollection<Geometry, { name: string }>
-}
-
-const W = 800
-const H = 600
-
-/** Points spanning each view (lon, lat); fitting to them frames the region. */
-const FRAMES: Record<MapView, [number, number][]> = {
-  world: [[-170, -56], [180, -56], [-170, 78], [180, 78]],
-  europe: [[-24, 35], [44, 35], [-24, 70], [44, 70]],
-  asia: [[26, -10], [148, -10], [26, 55], [148, 55]],
-  africa: [[-19, -35], [52, -35], [-19, 37], [52, 37]],
-  oceania: [[112, -47], [-172, -47], [112, 2], [-172, 2], [180, -20]],
-  northAmerica: [[-168, 8], [-52, 8], [-168, 72], [-52, 72]],
-  southAmerica: [[-82, -56], [-34, -56], [-82, 13], [-34, 13]],
-  uk: [[-8.2, 49.9], [1.8, 49.9], [-8.2, 60.9], [1.8, 60.9]],
-}
-
-function projectionFor(view: MapView): GeoProjection {
-  const p = view === 'uk' ? geoTransverseMercator().rotate([2, 0]) : view === 'world' ? geoNaturalEarth1() : view === 'oceania' ? geoMercator().rotate([-160, 0]) : geoMercator()
-  return p.fitExtent([[12, 12], [W - 12, H - 12]], { type: 'MultiPoint', coordinates: FRAMES[view] })
 }
 
 export interface Mark {

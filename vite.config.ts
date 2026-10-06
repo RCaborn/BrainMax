@@ -29,7 +29,7 @@ export default defineConfig({
       workbox: { globPatterns: ['**/*.{js,css,html,svg,json,png}'], maximumFileSizeToCacheInBytes: 5_000_000 },
     }),
   ],
-  build: { chunkSizeWarningLimit: 800 },
+  build: { chunkSizeWarningLimit: 1200 },
   server: { port: 5199, strictPort: true },
   preview: { port: 5199, strictPort: true },
   test: { environment: 'node' },

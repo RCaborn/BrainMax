@@ -17,6 +17,8 @@ export interface Draft {
   hint: string
   /** For "0.6875 = ?/16" questions: also accept "11/16" typed with this denominator. */
   fractionOver?: number
+  /** Plain-number answers about a unit ("Write 3,500m in billions" → 3.5): a typed "3.5bn" is also fine. */
+  unitSuffix?: 'k' | 'm' | 'bn'
 }
 
 export interface Rung {
@@ -30,6 +32,7 @@ export interface Rung {
 export interface Question extends Required<Pick<Draft, 'prompt' | 'answer' | 'display' | 'hint'>> {
   note?: string
   fractionOver?: number
+  unitSuffix?: 'k' | 'm' | 'bn'
   tol: number
   relTol: number
   category: string

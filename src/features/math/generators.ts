@@ -67,17 +67,33 @@ export function generate(category: CategoryId, level: number, rng: Rng): Questio
   const rung = rungOf(category, l)
   const d = rung.gen(rng)
   return {
-    prompt: d.prompt, note: d.note, answer: d.answer, display: d.display, hint: d.hint, fractionOver: d.fractionOver,
+    prompt: d.prompt, note: d.note, answer: d.answer, display: d.display, hint: d.hint, fractionOver: d.fractionOver, unitSuffix: d.unitSuffix,
     tol: d.tol ?? 0, relTol: d.relTol ?? 0,
     category, level: l, rungTitle: rung.title, tier: tierOf(category, l), targetMs: rung.targetS * 1000,
   }
 }
 
-/** Parses typed input for a question: also accepts "11/16" on "?/16" questions. */
-export function parseFor(q: Pick<Question, 'fractionOver'>, raw: string): number | null {
+/** Parses typed input for a question: also accepts "11/16" on "?/16" questions and "3.5bn" on unit-conversion questions. */
+export function parseFor(q: Pick<Question, 'fractionOver' | 'unitSuffix'>, raw: string): number | null {
   const m = raw.trim().match(/^(-?\d+)\s*\/\s*(\d+)$/)
   if (m && q.fractionOver && Number(m[2]) === q.fractionOver) return Number(m[1])
+  if (q.unitSuffix) {
+    const t = raw.trim().toLowerCase()
+    if (t.endsWith(q.unitSuffix)) return parseAnswer(t.slice(0, -q.unitSuffix.length))
+  }
   return parseAnswer(raw)
+}
+
+/** Big-money answers: a bare number counts in whichever unit (k, m, bn) makes it right, e.g. "120" for 120m. */
+const BIG_SUFFIX = /(k|m|bn)$/
+
+/** Marks a typed answer, including the unit-free reading for big-money questions. */
+export function isCorrectInput(q: Question, raw: string): boolean {
+  const v = parseFor(q, raw)
+  if (isCorrect(q, v)) return true
+  const typedSuffix = /[a-z]\s*$/i.test(raw.trim())
+  if (v === null || typedSuffix || !BIG_SUFFIX.test(q.display) || q.unitSuffix) return false
+  return [1e3, 1e6, 1e9].some((k) => isCorrect(q, v * k))
 }
 
 export function isCorrect(q: Pick<Question, 'answer' | 'tol' | 'relTol'>, given: number | null): boolean {

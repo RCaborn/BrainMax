@@ -5,6 +5,7 @@ import { distanceToPath, gradeClick, gradeName, haversine, normalizeName } from 
 import { buildGeoQueue, type GeoStored } from '../src/features/geo/queue'
 import { Rating, nextFields } from '../src/lib/srs'
 import { geoContains } from 'd3-geo'
+import { fitsView } from '../src/features/geo/projection'
 
 describe('data', () => {
   it('has 195 countries, 101 GB areas + 6 NI counties, and curated UK + world items', () => {
@@ -41,11 +42,20 @@ describe('data', () => {
       expect(it.lat, it.name).toBeGreaterThan(49.8)
       expect(it.lat, it.name).toBeLessThan(61)
       expect(it.lon, it.name).toBeGreaterThan(-8.7)
-      expect(it.lon, it.name).toBeLessThan(2)
+      // Seas may sit just east of the land (North Sea); they still have to be on the UK map.
+      expect(it.lon < 2 || (it.kind === 'sea' && fitsView('uk', [[it.lat, it.lon]])), it.name).toBe(true)
     }
     // Spot-check: London's centroid is inside Greater London.
     const gl = MAP_DATA.ukAreas.features.find((f) => f.properties.id === 'greater-london')!
     expect(geoContains(gl, [-0.12, 51.5])).toBe(true)
+  })
+  it('every non-country feature (point and river path) is on the map it is asked on', () => {
+    for (const it of ITEMS.filter((i) => i.kind !== 'country' && i.kind !== 'ukArea')) {
+      expect(fitsView(it.view, [[it.lat, it.lon], ...(it.path ?? [])]), `${it.name} on ${it.view}`).toBe(true)
+    }
+  })
+  it('point-only countries are on their map', () => {
+    for (const it of ITEMS.filter((i) => i.kind === 'country' && !i.shape)) expect(fitsView(it.view, [[it.lat, it.lon]]), it.name).toBe(true)
   })
   it('countries have capitals and flags; every fact has an answer', () => {
     for (const it of ITEMS.filter((i) => i.kind === 'country')) {

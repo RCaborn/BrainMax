@@ -2,27 +2,36 @@ import type { Draft, Rung } from '../types'
 import type { Rng } from '../../../lib/rng'
 import { fmt, gcd, pct, round, tools } from './util'
 
-const ANCHOR: Record<number, string> = {
-  3: '1/3 ≈ 33.33%', 6: '1/6 ≈ 16.67%', 7: '1/7 ≈ 14.29%', 8: '1/8 = 12.5%', 9: '1/9 ≈ 11.11%', 11: '1/11 ≈ 9.09%',
-  12: '1/12 ≈ 8.33%', 13: '1/13 ≈ 7.69%', 14: '1/14 ≈ 7.14%', 15: '1/15 ≈ 6.67%', 16: '1/16 = 6.25%', 17: '1/17 ≈ 5.88%',
-  18: '1/18 ≈ 5.56%', 19: '1/19 ≈ 5.26%', 20: '1/20 = 5%', 25: '1/25 = 4%', 40: '1/40 = 2.5%', 4: '1/4 = 25%', 5: '1/5 = 20%', 10: '1/10 = 10%', 32: '1/32 = 3.125%', 2: '1/2 = 50%',
-}
+/** 1/d as a % to 3 d.p. (exact when it terminates). */
+const unitPct = (d: number) => round(100 / d, 3)
+const terminates = (d: number) => round(100 / d, 3) === round(100 / d, 9)
+const anchor = (d: number) => `1/${d} ${terminates(d) ? '=' : '≈'} ${fmt(unitPct(d))}%`
 
 function coprime(rng: Rng, d: number, lo = 1, hi = d - 1): number {
   const { rWhere } = tools(rng)
   return rWhere(lo, hi, (n) => gcd(n, d) === 1)
 }
 
-const asPct = (n: number, d: number, oneDp: boolean): Draft => {
+/**
+ * n/d as a %. The hint multiplies the 3-d.p. anchor it shows, so its arithmetic reads true; the complement
+ * route is used only when it is genuinely shorter (d − n small) and never for terminating denominators.
+ */
+const asPct = (n: number, d: number, oneDp: boolean, tol = 0.051): Draft => {
   const exact = (n / d) * 100
   const ans = oneDp ? round(exact, 1) : round(exact)
-  const near = n > d / 2 && d > 6
-  const hint = near
-    ? `Complement: ${d - n}/${d} = ${fmt(round(((d - n) / d) * 100, 2))}%, so ${n}/${d} = 100 − that = ${fmt(round(exact, 2))}% → ${pct(ans)} (${ANCHOR[d] ?? ''})`
-    : n === 1
-      ? `${ANCHOR[d] ?? `1/${d} = ${fmt(round(100 / d, 3))}%`} → ${pct(ans)}`
-      : `${ANCHOR[d] ?? `1/${d} = ${fmt(round(100 / d, 3))}%`}; × ${n} = ${fmt(round(exact, 2))}% → ${pct(ans)} (keep an extra digit until the end)`
-  return { prompt: `${n}/${d} as a %`, note: oneDp ? 'to 1 d.p.' : undefined, answer: ans, display: pct(ans), tol: oneDp ? 0.051 : 0, hint }
+  const u = unitPct(d)
+  const k = d - n
+  const useComplement = !terminates(d) && d > 6 && (k <= 2 || k < n / 2)
+  let hint: string
+  if (n === 1) hint = `${anchor(d)} → ${pct(ans)}`
+  else if (useComplement) {
+    const comp = round(k * u, 3)
+    hint = `Complement: ${anchor(d)}${k > 1 ? `, × ${k} = ${fmt(comp)}%` : ''}; 100 − ${fmt(comp)} = ${fmt(round(100 - comp, 3))}% → ${pct(ans)}`
+  } else {
+    const prod = round(n * u, 3)
+    hint = `${anchor(d)}; × ${n} ${terminates(d) ? '=' : '≈'} ${fmt(prod)}% → ${pct(ans)}${oneDp && !terminates(d) ? ' (keep the extra digits until the end)' : ''}`
+  }
+  return { prompt: `${n}/${d} as a %`, note: oneDp ? 'to 1 d.p.' : undefined, answer: ans, display: pct(ans), tol: oneDp ? tol : 0, hint }
 }
 
 const asDec = (n: number, d: number): Draft => {
@@ -51,6 +60,11 @@ export const FRACTIONS: Rung[] = [
     const shown = asPercent ? `${fmt((100 * n) / d)}%` : fmt(n / d)
     return { prompt: `${shown} = ?/${d}`, note: 'type the missing number', answer: n, display: `${n}/${d}`, fractionOver: d, hint: `${shown} = ${fmt((100 * n) / d)}/100; scale to /${d}: ÷ ${100 / d} → ${n}/${d}` }
   } },
+  { key: 'twentieths', title: '20ths and 25ths as %', targetS: 5, gen: (rng) => {
+    const { pick } = tools(rng)
+    const d = pick([20, 25])
+    return asPct(coprime(rng, d), d, false)
+  } },
   { key: 'simplify', title: 'Simplify, then convert', targetS: 6, gen: (rng) => {
     const { pick, rWhere } = tools(rng)
     const [n, d] = pick(BENCH.filter(([, dd]) => dd !== 2))
@@ -58,19 +72,12 @@ export const FRACTIONS: Rung[] = [
     const ans = (100 * n) / d
     return { prompt: `${n * k}/${d * k} as a %`, answer: ans, display: pct(ans), hint: `Divide top and bottom by ${k}: ${n * k}/${d * k} = ${n}/${d} = ${pct(ans)}` }
   } },
-  { key: 'twentieths', title: '20ths and 25ths as %', targetS: 5, gen: (rng) => {
-    const { pick } = tools(rng)
-    const d = pick([20, 25, 4, 5])
-    return asPct(coprime(rng, d), d, false)
-  } },
   { key: 'eighths', title: 'Eighths as decimals', targetS: 5, gen: (rng) => asDec(coprime(rng, 8), 8) },
-  { key: 'backTo8', title: 'Decimal → ?/8 or ?/16', targetS: 6, gen: (rng) => {
-    const { pick } = tools(rng)
-    const d = pick([8, 16])
-    const n = coprime(rng, d)
+  { key: 'backTo8', title: 'Decimal → ?/8', targetS: 6, gen: (rng) => {
+    const n = coprime(rng, 8)
     return {
-      prompt: `${fmt(round(n / d))} = ?/${d}`, note: 'type the missing number', answer: n, display: `${n}/${d}`, fractionOver: d,
-      hint: `${fmt(round(n / d))} × ${d} = ${n}${d === 16 ? ' (or think in eighths: 1/16 = 0.0625)' : ' (1/8 = 0.125)'}`,
+      prompt: `${fmt(round(n / 8))} = ?/8`, note: 'type the missing number', answer: n, display: `${n}/8`, fractionOver: 8,
+      hint: `1/8 = 0.125, and ${fmt(round(n / 8))} = ${n} × 0.125 → ${n}/8`,
     }
   } },
   { key: 'thirds', title: 'Thirds and sixths (1 d.p.)', targetS: 6, gen: (rng) => {
@@ -78,10 +85,19 @@ export const FRACTIONS: Rung[] = [
     const d = pick([3, 6])
     return asPct(coprime(rng, d), d, true)
   } },
-  { key: 'sixteenths', title: '16ths and 40ths as decimals', targetS: 8, gen: (rng) => {
-    const { pick } = tools(rng)
+  { key: 'sixteenths', title: '16ths and 40ths (both ways)', targetS: 8, gen: (rng) => {
+    const { pick, coin } = tools(rng)
     const d = pick([16, 40])
-    return asDec(coprime(rng, d), d)
+    const n = coprime(rng, d)
+    if (d === 16 && coin()) {
+      const lower = (n - 1) / 2
+      const parts = lower > 0 ? `${fmt(round(lower / 8))} + 0.0625 = ${lower}/8 + 1/16 = ` : ''
+      return {
+        prompt: `${fmt(round(n / 16))} = ?/16`, note: 'type the missing number', answer: n, display: `${n}/16`, fractionOver: 16,
+        hint: `${fmt(round(n / 16))} = ${parts}${n}/16 (1/16 = 0.0625, half of 1/8)`,
+      }
+    }
+    return asDec(n, d)
   } },
   { key: 'fractionOf', title: 'Fraction of a number', targetS: 7, gen: (rng) => {
     const { r, pick } = tools(rng)
@@ -104,7 +120,7 @@ export const FRACTIONS: Rung[] = [
     const shown = round((n / d) * 100, 1)
     return {
       prompt: `${fmt(shown)}% = ?/${d}`, note: 'type the missing number', answer: n, display: `${n}/${d}`, fractionOver: d,
-      hint: `${ANCHOR[d]}: ${fmt(shown)} ÷ ${fmt(round(100 / d, 2))} ≈ ${n}`,
+      hint: `${anchor(d)}, and ${n} × ${fmt(unitPct(d))} = ${fmt(round(n * unitPct(d), 3))} ≈ ${fmt(shown)} → ${n}/${d}`,
     }
   } },
   { key: 'sumUnits', title: 'Sum of two unit fractions', targetS: 12, gen: (rng) => {
@@ -112,7 +128,7 @@ export const FRACTIONS: Rung[] = [
     const a = pick([7, 8, 9, 11, 12])
     const b = rWhere(5, 12, (x) => x !== a && x !== 10)
     const ans = round((1 / a + 1 / b) * 100, 1)
-    return { prompt: `1/${a} + 1/${b} as a %`, note: 'to 1 d.p.', answer: ans, display: pct(ans), tol: 0.051, hint: `${fmt(round(100 / a, 2))}% + ${fmt(round(100 / b, 2))}% = ${fmt(round((1 / a + 1 / b) * 100, 2))}% → ${pct(ans)}` }
+    return { prompt: `1/${a} + 1/${b} as a %`, note: 'to 1 d.p.', answer: ans, display: pct(ans), tol: 0.051, hint: `${fmt(unitPct(a))}% + ${fmt(unitPct(b))}% = ${fmt(round(unitPct(a) + unitPct(b), 3))}% → ${pct(ans)}` }
   } },
   { key: 'fractionOfBig', title: 'Fraction of a bigger number', targetS: 12, gen: (rng) => {
     const { r, pick } = tools(rng)
@@ -130,11 +146,11 @@ export const FRACTIONS: Rung[] = [
       return asPct(coprime(rng, d), d, true)
     }
     const d = pick([13, 17, 19])
-    return asPct(d - pick([1, 2]), d, true)
+    return { ...asPct(d - pick([1, 2]), d, true, 0.1), note: 'to 1 d.p. (±0.1)' }
   } },
   { key: 'primes', title: '13ths, 17ths, 19ths (1 d.p.)', targetS: 16, gen: (rng) => {
     const { pick } = tools(rng)
     const d = pick([13, 17, 19])
-    return asPct(coprime(rng, d), d, true)
+    return { ...asPct(coprime(rng, d), d, true, 0.1), note: 'to 1 d.p. (±0.1)' }
   } },
 ]

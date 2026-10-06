@@ -31,7 +31,7 @@ export const PERCENT_OF: Rung[] = [
   } },
   { key: 'build', title: 'Build from 10% and 5%', targetS: 6, gen: (rng) => {
     const { r, pick } = tools(rng)
-    return pctOf(pick([20, 30, 40, 5, 75]), r(2, 30) * 20)
+    return pctOf(pick([20, 30, 40, 5, 15]), r(2, 30) * 20)
   } },
   { key: 'finance', title: 'Round-number finance', targetS: 8, gen: (rng) => {
     const { r, pick } = tools(rng)
@@ -39,18 +39,15 @@ export const PERCENT_OF: Rung[] = [
     const base = r(2, 30) * 20 * 1e6
     const ans = (p * base) / 100
     const B = fmtBig(base)
-    const prompt = pick([
-      `Revenue ${B} at a ${p}% EBITDA margin. EBITDA?`,
+    // Only realistic pairings: no 50% deal fees or 50% tax rates.
+    const templates = [
       `${p}% stake in a business valued at ${B}. Stake value?`,
-      `${p}% fee on a ${B} deal?`,
-      `${p}% tax on profit of ${B}?`,
-      `Payout ratio ${p}%, net income ${B}. Dividends?`,
-    ])
-    return { prompt, note: 'k / m / bn accepted', answer: ans, display: fmtBig(ans), relTol: 0.001, hint: percentHintBig(p, base) }
-  } },
-  { key: 'easyRates', title: '10/20/25/50/75% of round numbers', targetS: 6, gen: (rng) => {
-    const { r, pick } = tools(rng)
-    return pctOf(pick([10, 20, 25, 50, 75]), r(4, 99) * 20)
+      ...(p >= 10 && p <= 40 ? [`Revenue ${B} at a ${p}% EBITDA margin. EBITDA?`] : []),
+      ...(p <= 10 ? [`${p}% commission on ${B} of sales?`] : []),
+      ...(p >= 15 && p <= 30 ? [`${p}% tax on profit of ${B}?`] : []),
+      ...(p >= 20 ? [`Payout ratio ${p}%, net income ${B}. Dividends?`] : []),
+    ]
+    return { prompt: pick(templates), note: 'in m (unit optional)', answer: ans, display: fmtBig(ans), relTol: 0.001, hint: percentHintBig(p, base) }
   } },
   { key: 'ofHundreds', title: 'Any % of hundreds', targetS: 8, gen: (rng) => {
     const { r, rNot10 } = tools(rng)
@@ -72,20 +69,20 @@ export const PERCENT_OF: Rung[] = [
     const { r, pick } = tools(rng)
     return pctOf(pick([0.5, 1.5, 2.5, 7.5, 0.25, 0.75]), r(12, 99) * 100)
   } },
+  { key: '1dpHundreds', title: '1-d.p. rates of hundreds', targetS: 10, gen: (rng) => {
+    const { r, dec1 } = tools(rng)
+    return pctOf(dec1(11, 99), r(2, 9) * 100)
+  } },
   { key: 'smallBig', title: 'Small rates of billions', targetS: 12, gen: (rng) => {
     const { r, pick } = tools(rng)
     const p = pick([0.2, 0.3, 0.4, 0.6, 1.2, 2.5, 3.5])
     const base = r(12, 96) * 1e8
     const ans = round((p * base) / 100)
-    return { prompt: `${fmt(p)}% of ${fmtBig(base)}`, note: 'give units, e.g. 51.6m', answer: ans, display: fmtBig(ans), relTol: 0.001, hint: percentHintBig(p, base) }
+    return { prompt: `${fmt(p)}% of ${fmtBig(base)}`, note: 'unit optional, e.g. 51.6m', answer: ans, display: fmtBig(ans), relTol: 0.001, hint: percentHintBig(p, base) }
   } },
   { key: 'reverseAnchors', title: 'Reverse: x is 25% of what?', targetS: 9, gen: (rng) => {
     const { r, pick } = tools(rng)
     return reverse(pick([5, 10, 20, 25, 50]), r(4, 60) * 20)
-  } },
-  { key: 'reverse', title: 'Reverse with any rate', targetS: 14, gen: (rng) => {
-    const { r, pick } = tools(rng)
-    return reverse(pick([5, 15, 12.5, 35, 45, 7.5, 2.5, 60, 85]), r(4, 80) * 40)
   } },
   { key: 'nearRound', title: 'Near-round rates (29% = 30% − 1%)', targetS: 12, gen: (rng) => {
     const { r, pick } = tools(rng)
@@ -94,6 +91,10 @@ export const PERCENT_OF: Rung[] = [
   { key: 'fivesAny', title: 'Multiples of 5% of any base', targetS: 12, gen: (rng) => {
     const { r, pick } = tools(rng)
     return pctOf(pick([15, 35, 45, 55, 65, 85]), r(12, 99) * 10)
+  } },
+  { key: 'reverse', title: 'Reverse with any rate', targetS: 14, gen: (rng) => {
+    const { r, pick } = tools(rng)
+    return reverse(pick([5, 15, 12.5, 35, 45, 7.5, 2.5, 60, 85]), r(4, 80) * 40)
   } },
   { key: 'any', title: 'Any % of any base', targetS: 15, gen: (rng) => {
     const { r, rWhere } = tools(rng)
@@ -109,10 +110,6 @@ export const PERCENT_OF: Rung[] = [
       prompt: `${fmt(base)} after a ${d1}% discount, then a further ${d2}% off`, note: 'exact', answer: ans, display: fmt(ans),
       hint: `Multiply the factors: ${fmt(base)} × ${fmt(1 - d1 / 100)} = ${fmt(round(base * (1 - d1 / 100)))}, × ${fmt(1 - d2 / 100)} = ${fmt(ans)} (not ${d1 + d2}% off)`,
     }
-  } },
-  { key: '1dpHundreds', title: '1-d.p. rates of hundreds', targetS: 10, gen: (rng) => {
-    const { r, dec1 } = tools(rng)
-    return pctOf(dec1(11, 99), r(2, 9) * 100)
   } },
   { key: '1dpAny', title: '1-d.p. rates of any base', targetS: 18, gen: (rng) => {
     const { r, dec1 } = tools(rng)

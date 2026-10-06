@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, getMeta } from '../lib/db'
 import { dayKey, parseDayKey } from '../lib/day'
-import { bestStreak, geoLaunchDay, streak, taskCount } from '../lib/progress'
+import { bestStreak, readGeoLaunch, streak, taskCount } from '../lib/progress'
 import { PUZZLE_INFO, puzzleForDay } from '../features/puzzles/rotation'
 import { DAILY_SIZE } from '../features/spanish/scheduler'
 
@@ -10,7 +10,7 @@ export default function TodayPage() {
   const today = dayKey()
   const status = useLiveQuery(() => db.daily.get(today), [today])
   const days = useLiveQuery(() => db.daily.toArray(), []) ?? []
-  const geoLaunch = useLiveQuery(() => geoLaunchDay(), []) ?? null
+  const geoLaunch = useLiveQuery(() => readGeoLaunch(), []) ?? null
   const backup = useLiveQuery(async () => {
     const last = await getMeta<string | null>('lastBackup', null)
     const hasData = (await db.reviews.count()) + (await db.mathSessions.count()) > 0

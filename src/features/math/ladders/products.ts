@@ -14,8 +14,9 @@ const NEAR_ROUND = [19, 21, 29, 31, 39, 41, 49, 51, 59, 61, 69, 71, 79, 81]
 export const PRODUCTS: Rung[] = [
   { key: 'zeros', title: 'Round numbers and zeros', targetS: 5, gen: (rng) => {
     const { r, pick } = tools(rng)
-    const a = pick([12, 15, 25, 35, 45]) * pick([1, 10])
-    const b = r(2, 9) * (a >= 100 ? 10 : pick([10, 100]))
+    const core = pick([12, 15, 25, 35, 45])
+    const a = core * pick([1, 10])
+    const b = r(2, core >= 35 ? 5 : 9) * (a >= 100 ? 10 : pick([10, 100]))
     return prod(a, b)
   } },
   { key: 'x3to5', title: '2-digit × 3–5', targetS: 5, gen: (rng) => {
@@ -54,13 +55,13 @@ export const PRODUCTS: Rung[] = [
   { key: 'near100easy', title: 'Near 100 (one factor 95–99)', targetS: 9, gen: (rng) => {
     const { r, rWhere, coin } = tools(rng)
     const a = r(95, 99)
-    const b = rWhere(86, 99, (n) => n !== a)
+    const b = rWhere(86, 99, (n) => n !== a && n !== 90)
     return coin() ? prod(a, b) : prod(b, a)
   } },
   { key: 'near100', title: 'Near 100 (both 86–99)', targetS: 11, gen: (rng) => {
-    const { r, rWhere } = tools(rng)
-    const a = r(86, 99)
-    return prod(a, rWhere(86, 99, (n) => n !== a))
+    const { rWhere } = tools(rng)
+    const a = rWhere(86, 99, (n) => n !== 90)
+    return prod(a, rWhere(86, 99, (n) => n !== a && n !== 90))
   } },
   { key: 'sq99', title: 'Squares 41–99', targetS: 13, gen: (rng) => {
     const a = tools(rng).rNot10(41, 99)
@@ -70,22 +71,22 @@ export const PRODUCTS: Rung[] = [
     const { rNot10, rWhere } = tools(rng)
     return prod(rNot10(23, 59), rWhere(21, 39, (n) => ![0, 1, 9].includes(n % 10)))
   } },
+  { key: '3xteens', title: '3-digit × teens or 25', targetS: 14, gen: (rng) => {
+    const { pick, rNot10 } = tools(rng)
+    return prod(rNot10(110, 499), pick([11, 12, 13, 14, 15, 16, 17, 18, 19, 25]))
+  } },
+  { key: '3xnearRound', title: '3-digit × near-round 2-digit', targetS: 15, gen: (rng) => {
+    const { pick, rNot10 } = tools(rng)
+    return prod(rNot10(310, 999), pick([...NEAR_ROUND, 89, 91, 99]))
+  } },
   { key: '2x2', title: '2-digit × 2-digit', targetS: 18, gen: (rng) => {
     const { rNot10, rWhere } = tools(rng)
     const a = rNot10(41, 99)
     return prod(a, rWhere(41, 99, (n) => n % 10 !== 0 && n !== a))
   } },
-  { key: '3xteens', title: '3-digit × teens or 25', targetS: 14, gen: (rng) => {
-    const { pick, rNot10 } = tools(rng)
-    return prod(rNot10(110, 499), pick([11, 12, 13, 14, 15, 16, 17, 18, 19, 25]))
-  } },
   { key: '3x2', title: '3-digit × 2-digit', targetS: 22, gen: (rng) => {
     const { rNot10 } = tools(rng)
     return prod(rNot10(110, 499), rNot10(12, 49))
-  } },
-  { key: '3xnearRound', title: '3-digit × near-round 2-digit', targetS: 15, gen: (rng) => {
-    const { pick, rNot10 } = tools(rng)
-    return prod(rNot10(310, 999), pick([...NEAR_ROUND, 89, 91, 99]))
   } },
   { key: '3x2big', title: '3-digit × 2-digit (large)', targetS: 30, gen: (rng) => {
     const { rNot10 } = tools(rng)

@@ -14,7 +14,13 @@ export async function placementKnown(): Promise<Set<number>> {
   return new Set(p?.knownWords ?? [])
 }
 
-/** Geography became a 4th daily task on this day; earlier days count as complete with 3 tasks. */
+/** Read-only (safe inside useLiveQuery): the day geography launched, or null before the app has recorded it. */
+export const readGeoLaunch = () => getMeta<string | null>('geoLaunch', null)
+
+/**
+ * Geography became a 4th daily task on this day; earlier days count as complete with 3 tasks.
+ * Writes on first run, so call it outside live queries (the app does at start-up).
+ */
 export async function geoLaunchDay(): Promise<string> {
   const d = await getMeta<string | null>('geoLaunch', null)
   if (d) return d

@@ -3,7 +3,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { db, getMeta, markDaily, setMeta } from '../lib/db'
 import { dayKey } from '../lib/day'
 import { mulberry32 } from '../lib/rng'
-import { CATEGORIES, type CategoryId, type Question, categoryName, isCorrect, parseFor, rungCount, rungOf, tierOf } from '../features/math/generators'
+import { CATEGORIES, type CategoryId, type Question, categoryName, isCorrectInput, parseFor, rungCount, rungOf, tierOf } from '../features/math/generators'
 import { type Levels, PREREQS, UNLOCK_LEVEL, buildDailySet, drillQuestion, examQuestion, scoreAnswer, unlockedSkills, updateLevel } from '../features/math/engine'
 import { type UnlockState, loadLevels, loadRecentAccuracy, markLessonSeen, saveLevel, syncUnlocks } from '../features/math/progress'
 import { LESSONS } from '../features/math/lessons'
@@ -241,7 +241,7 @@ function MathSession({ mode, onExit }: { mode: Mode; onExit: () => void }) {
     const parsed = parseFor(q, input)
     if (!skip && parsed === null) return
     const ms = performance.now() - qStart.current
-    const correct = !skip && isCorrect(q, parsed)
+    const correct = !skip && isCorrectInput(q, input)
     const { r, all } = await record(q, input, correct, ms, skip)
     if (mode === 'daily') {
       setPhase('feedback')
@@ -290,7 +290,7 @@ function MathSession({ mode, onExit }: { mode: Mode; onExit: () => void }) {
       <input
         ref={inputRef}
         className="answer-input"
-        inputMode={q.fractionOver ? 'text' : 'decimal'}
+        inputMode={q.fractionOver || q.unitSuffix || /(k|m|bn)$/.test(q.display) ? 'text' : 'decimal'}
         autoComplete="off"
         value={input}
         readOnly={phase !== 'answer'}

@@ -3,7 +3,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { db } from '../lib/db'
 import { addDays, dayKey, now } from '../lib/day'
-import { streak, bestStreak, tasksDone, placementKnown, geoLaunchDay, taskCount } from '../lib/progress'
+import { streak, bestStreak, tasksDone, placementKnown, readGeoLaunch, taskCount } from '../lib/progress'
 import { GeoSection } from '../features/geo/GeoStats'
 import { recallEstimate } from '../features/spanish/scheduler'
 import { WORD_BY_ID, TOTAL_WORDS, spanishDisplay } from '../features/spanish/words'
@@ -62,7 +62,7 @@ export default function StatsPage() {
     puzzles: await db.puzzles.toArray(),
     fermi: await db.fermi.toArray(),
     known: await placementKnown(),
-    geoLaunch: await geoLaunchDay(),
+    geoLaunch: await readGeoLaunch(),
     geoCards: await db.geoCards.toArray(),
     geoReviews: await db.geoReviews.toArray(),
   }), [])

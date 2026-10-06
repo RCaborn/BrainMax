@@ -1,4 +1,5 @@
 import type { Curated, GeoCardDef, GeoItem, MapView } from './types'
+import { fitsView } from './projection'
 
 export interface CountryRow {
   id: string
@@ -108,6 +109,13 @@ export function ukAreaItems(rows: UkAreaRow[]): GeoItem[] {
   return [...areas, ...ni]
 }
 
+/** The continent map when the whole feature (point and path) is on it, else the world map. Oceans always use the world map. */
+function regionalView(c: Curated): MapView {
+  const v = VIEW_BY_REGION[c.region]
+  const pts: [number, number][] = [[c.lat, c.lon], ...((c.path ?? []) as [number, number][])]
+  return v && c.radiusKm < 1500 && fitsView(v, pts) ? v : 'world'
+}
+
 export function curatedItems(list: Curated[], uk: boolean): GeoItem[] {
   return list.map((c) => ({
     id: `${uk ? 'uk' : 'world'}-${c.id}`,
@@ -116,7 +124,7 @@ export function curatedItems(list: Curated[], uk: boolean): GeoItem[] {
     kind: c.kind,
     uk,
     region: c.region,
-    view: uk ? 'uk' : VIEW_BY_REGION[c.region] ?? 'world',
+    view: uk ? 'uk' : regionalView(c),
     lat: c.lat,
     lon: c.lon,
     radiusKm: Math.max(c.radiusKm, uk ? 8 : 40),

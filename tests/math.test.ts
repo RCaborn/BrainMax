@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import { CATEGORIES, LADDERS, type CategoryId, generate, isCorrect, parseFor, rungCount, tierOf } from '../src/features/math/generators'
-import { parseAnswer, fmt } from '../src/features/math/format'
+import { CATEGORIES, LADDERS, type CategoryId, generate, isCorrect, isCorrectInput, parseFor, rungCount, tierOf } from '../src/features/math/generators'
+import { parseAnswer, fmt, round } from '../src/features/math/format'
 import { buildDailySet, defaultLevels, freshLevel, unlockedSkills, updateLevel, STARTING_SKILLS, UNLOCK_LEVEL, PREREQS } from '../src/features/math/engine'
-import { percentHint, productHint, divisionHint } from '../src/features/math/hints'
+import { cagrHint, percentHint, productHint, divisionHint } from '../src/features/math/hints'
 import { mulberry32 } from '../src/lib/rng'
 
 const ids = CATEGORIES.map((c) => c.id)
@@ -10,7 +10,7 @@ const ids = CATEGORIES.map((c) => c.id)
 describe('parseAnswer', () => {
   it.each([
     ['1,440', 1440], ['1.44bn', 1.44e9], ['1440m', 1.44e9], ['300k', 3e5], ['−20', -20], ['-20%', -20],
-    ['15%', 15], ['8.5x', 8.5], ['.5', 0.5], [' 42 ', 42], ['£3.2m', 3.2e6],
+    ['15%', 15], ['8.5x', 8.5], ['.5', 0.5], [' 42 ', 42], ['£3.2m', 3.2e6], ['x1.08', 1.08], ['×0.88', 0.88],
   ])('%s → %d', (s, n) => expect(parseAnswer(s)).toBeCloseTo(n as number, 6))
   it.each(['', 'abc', '1.2.3', '5zz'])('rejects %s', (s) => expect(parseAnswer(s)).toBeNull())
   it('accepts n/d on ?/d questions only', () => {
@@ -110,6 +110,91 @@ describe('hints', () => {
   it('fmt formats with commas and minus sign', () => {
     expect(fmt(1234567.5)).toBe('1,234,567.5')
     expect(fmt(-20)).toBe('−20')
+  })
+})
+
+/** Draws from one rung until `ok` holds. */
+function find(cat: CategoryId, key: string, ok: (q: ReturnType<typeof generate>) => boolean) {
+  const level = LADDERS[cat].findIndex((r) => r.key === key) + 1
+  expect(level, key).toBeGreaterThan(0)
+  const rng = mulberry32(3)
+  for (let i = 0; i < 20_000; i++) {
+    const q = generate(cat, level, rng)
+    if (ok(q)) return q
+  }
+  throw new Error(`no sample for ${cat}/${key}`)
+}
+
+describe('review fixes', () => {
+  it('round() is half-up despite float noise', () => {
+    expect(round(4.9 * 1.25 * 4.6, 2)).toBe(28.18)
+    expect(round(-2.675, 2)).toBe(-2.68)
+  })
+  it('unit questions accept the unit; big-money questions accept a bare number in the prompt unit', () => {
+    const conv = find('bigNumbers', 'units', (q) => q.unitSuffix === 'bn')
+    expect(isCorrectInput(conv, `${conv.display}bn`)).toBe(true)
+    expect(isCorrectInput(conv, conv.display)).toBe(true)
+    const ev = find('multiples', 'oneStep', (q) => q.prompt.startsWith('EBITDA') && q.answer < 1e9)
+    expect(isCorrectInput(ev, String(ev.answer / 1e6))).toBe(true)
+    expect(isCorrectInput(ev, `${ev.answer / 1e6}m`)).toBe(true)
+    expect(isCorrectInput(ev, `${ev.answer / 1e6}k`)).toBe(false)
+  })
+  it('3-factor 2-d.p. ties accept either neighbour', () => {
+    const q = find('decimals', 'threeHard', (x) => Math.abs(x.answer * 1000 - Math.round(x.answer * 1000)) < 1e-6 && Math.round(x.answer * 1000) % 10 === 5)
+    expect(isCorrect(q, round(q.answer - 0.005, 2))).toBe(true)
+    expect(isCorrect(q, round(q.answer + 0.005, 2))).toBe(true)
+  })
+  it('nearest-whole % change rejects the wrong neighbour', () => {
+    const rng = mulberry32(11)
+    const level = LADDERS.pctChange.findIndex((r) => r.key === 'nearestWhole') + 1
+    for (let i = 0; i < 2000; i++) {
+      const q = generate('pctChange', level, rng)
+      const right = Math.round(q.answer)
+      expect(isCorrect(q, right), q.prompt).toBe(true)
+      expect(isCorrect(q, right + (q.answer < right ? -1 : 1)), q.prompt).toBe(Math.abs(q.answer - right) === 0.5)
+    }
+  })
+  it('fraction hints multiply the anchor they show and land inside the tolerance', () => {
+    for (const key of ['thirds', 'sevenths', 'ninths', 'bridge', 'primes']) {
+      const rng = mulberry32(17)
+      const level = LADDERS.fractions.findIndex((r) => r.key === key) + 1
+      for (let i = 0; i < 400; i++) {
+        const q = generate('fractions', level, rng)
+        const shown = Number(q.hint.match(/→ (\d+(?:\.\d+)?)%/)?.[1])
+        expect(isCorrect(q, shown), q.hint).toBe(true)
+        // The last product printed before the arrow, rounded to 1 d.p., is accepted too.
+        const route = q.hint.match(/(\d+\.\d+)% → [\d.]+%/)?.[1]
+        if (route) expect(isCorrect(q, round(Number(route), 1)), q.hint).toBe(true)
+      }
+    }
+  })
+  it('real return: plain subtraction is never accepted, a correct 1-d.p. answer is', () => {
+    const rng = mulberry32(5)
+    const level = LADDERS.growth.findIndex((r) => r.key === 'real') + 1
+    for (let i = 0; i < 2000; i++) {
+      const q = generate('growth', level, rng)
+      const [nom, inf] = q.prompt.match(/\d+/g)!.map(Number)
+      expect(isCorrect(q, nom - inf), q.prompt).toBe(false)
+      expect(isCorrect(q, round(q.answer, 1)), q.prompt).toBe(true)
+    }
+  })
+  it('hints teach the rung\'s method', () => {
+    expect(productHint(94, 50)).toContain('×100 then halve')
+    expect(productHint(58, 81)).toContain('58 × 80 + 58 × 1')
+    expect(productHint(174, 17)).toContain('174 × 10 + 174 × 7')
+    expect(percentHint(30, 140)).toBe('10% = 14, × 3 = 42')
+    expect(percentHint(0.25, 6700)).toContain('a quarter of 1% (67)')
+    expect(percentHint(43, 590)).toContain('1% = 5.9, × 3 = 17.7')
+    expect(percentHint(77, 300)).toBe('1% of 300 = 3; × 77 = 231')
+    expect(percentHint(17.5, 440)).toContain('10% + 5% + 2.5%')
+    expect(cagrHint(1.6, 2, 26.49)).toContain('square root')
+    for (const p of [0.25, 0.5, 2.5, 7.5, 12, 29, 43, 55, 9.5]) expect(percentHint(p, 6700)).not.toMatch(/Build/)
+  })
+  it('ladders have no big target dips (difficulty climbs)', () => {
+    for (const c of ids) {
+      const t = LADDERS[c].map((r) => r.targetS)
+      for (let i = 1; i < t.length; i++) expect(t[i], `${c} rung ${i + 1}`).toBeGreaterThanOrEqual(t[i - 1] * 0.75)
+    }
   })
 })
 
